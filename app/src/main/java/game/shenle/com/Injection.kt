@@ -19,7 +19,7 @@ package com.example.android.observability
 import android.content.Context
 import com.example.android.observability.persistence.UserDao
 
-import com.example.android.observability.persistence.UsersDatabase
+import com.example.android.observability.persistence.AppDatabase
 import com.example.android.observability.ui.ViewModelFactory
 
 /**
@@ -28,7 +28,7 @@ import com.example.android.observability.ui.ViewModelFactory
 object Injection {
 
     fun provideUserDataSource(context: Context): UserDao {
-        val database = UsersDatabase.getInstance(context)
+        val database = AppDatabase.getInstance(context)
         return database.userDao()
     }
 

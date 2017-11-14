@@ -25,22 +25,22 @@ import android.content.Context
  * The Room database that contains the Users table
  */
 @Database(entities = arrayOf(User::class), version = 1)
-abstract class UsersDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
 
     companion object {
 
-        @Volatile private var INSTANCE: UsersDatabase? = null
+        @Volatile private var INSTANCE: AppDatabase? = null
 
-        fun getInstance(context: Context): UsersDatabase =
+        fun getInstance(context: Context): AppDatabase =
                 INSTANCE ?: synchronized(this) {
                     INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
                 }
 
         private fun buildDatabase(context: Context) =
                 Room.databaseBuilder(context.applicationContext,
-                        UsersDatabase::class.java, "BKJH.db")
+                        AppDatabase::class.java, "BKJH.db")
                         .build()
     }
 }
