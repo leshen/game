@@ -16,12 +16,12 @@
 
 package com.example.android.observability.persistence
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-
-import io.reactivex.Flowable
+import android.os.SystemClock
 
 /**
  * Data Access Object for the users table.
@@ -35,7 +35,8 @@ interface UserDao {
      * @return the user from the table with a specific id.
      */
     @Query("SELECT * FROM Users WHERE userid = :id")
-    fun getUserById(id: String): Flowable<User>
+//    fun getUserById(id: String): Flowable<User>
+    fun getUserById(id: String): LiveData<User>?
 
     /**
      * Insert a user in the database. If the user already exists, replace it.
@@ -44,6 +45,10 @@ interface UserDao {
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(user: User)
+
+    fun insertNewUser(id: String){
+        insertUser(User(id,SystemClock.currentThreadTimeMillis()))
+    }
 
     /**
      * Delete all users.

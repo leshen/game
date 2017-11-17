@@ -24,6 +24,9 @@ import java.util.*
 @Entity(tableName = "users")
 data class User(@PrimaryKey
                 @ColumnInfo(name = "userid")
-                val id: String = UUID.randomUUID().toString(),
-                @ColumnInfo(name = "username")
-                val userName: String)
+                var id: String = UUID.randomUUID().toString(),
+                @ColumnInfo(name = "savetime")
+                val saveTime: Long){
+    @ColumnInfo(name = "username")
+    var userName: String=""
+}
