@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--*********************************************************猪易通用过**************************************************************** -->
+    <!-- 背景1 橘红-首页顶部背景色 -->
+    <color name="bg_1">#ff5000</color>
+    <!-- 背景1 橘红-背景1press -->
+    <color name="bg_1_press">#e74b04</color>
+    <!-- 背景2   纯白-首页,列表页,内容页 -->
+    <color name="bg_2">#ffffff</color>
+    <!-- 背景3 浅灰-非首页顶部背景色 -->
+    <color name="bg_3">#ffffff</color>
+    <!-- 背景4 浅黄灰-首页,报价,生猪交易,种猪导购,招聘,仔猪,经纪人,排行榜等浮动底部背景色 -->
+    <color name="bg_4">#f9f9f9</color>
+    <!-- 背景5 浅灰-内层页,分割条背景色 -->
+    <color name="bg_5">#f0f0f0</color>
+    <!-- 背景6 浅绿灰-看兽医底部背景色 -->
+    <color name="bg_6">#f9f9f9</color>
+    <!-- 背景7 浅绿-康大夫主题色背景色 -->
+    <color name="bg_7">#37b059</color>
+    <!-- 背景8 深绿- 背景7按下的颜色 -->
+    <color name="bg_8">#2c984a</color>
+    <!-- 背景9 浅蓝 资讯提示背景色 -->
+    <color name="bg_9">#ecf4ff</color>
+    <!-- 背景10  背景1 橘红按下时的颜色 -->
+    <color name="bg_10">#e74b04</color>
+    <!-- 背景11   红色  商城主色  -->
+    <color name="bg_11">#f23030</color>
+    <!-- 背景12   申请提现黄色  -->
+    <color name="bg_12">#fcdb6a</color>
+    <!-- 背景13   申请提现黄色按下  -->
+    <color name="bg_13">#ffba00</color>
+    <!-- 背景14  即将开始红包背景色  -->
+    <color name="bg_14">#f05f65</color>
+    <!-- 背景14  即将开始红包背景色  -->
+    <color name="bg_p">#333</color>
+    <!-- 背景色15 -->
+    <color name="bg_15">#fcf7d6</color>
+    <!-- 背景色 浅红(未按之前)16 -->
+    <color name="bg_19">#ff7638</color>
+    <color name="bg_17">#CACACA</color>
+    <color name="bg_18">#E4FAEB</color>
+    <!-- 论坛蓝色文字 -->
+    <color name="bg_16">#f9d596</color>
+    <color name="bg_20">#4680d1</color>
+    <!--商城优惠券-->
+    <color name="bg_21">#fed900</color>
+
+    <!--猪易商城正在促销背景-->
+    <color name="bg_31">#fef5d7</color>
+
+    <!-- 分割线1   顶部底下1px分割线 实线 -->
+    <color name="fg_line_1">#c9c9c9</color>
+    <!-- 分割线2 列表1px分割线  实线 -->
+    <color name="fg_line_2">#eeeeee</color>
+    <!-- 分割线3 列表1px分割线  虚线 -->
+    <color name="fg_line_3">#eeeeee</color>
+    <!-- 分割线4 回答1px边线 实线 -->
+    <color name="fg_line_4">#e5e5e5</color>
+    <!-- 分割线5 1px边线 实线 -->
+    <color name="fg_line_5">#ff676c</color>
+    <!-- 分割线6 1px边线 实线 -->
+    <color name="fg_line_6">#4f5155</color>
+
+    <!-- 文字1 黑色  标题,正文 -->
+    <color name="text_color_1">#333333</color>
+    <!-- 文字2 橙色  重点醒目,点击状态文字,报价价格 -->
+    <color name="text_color_2">#ff5000</color>
+    <color name="text_color_2_press">#e74901</color>
+    <!-- 文字3 深色  辅助,默认状态文字 -->
+    <color name="text_color_3">#757575</color>
+    <!-- 文字4 灰色  提示性文字,事件,作者,浏览次数 -->
+    <color name="text_color_4">#999999</color>
+    <!-- 文字5 纯白  按钮文字 -->
+    <color name="text_color_5">#ffffff</color>
+    <!-- 文字6 绿色  康大夫主色 -->
+    <color name="text_color_6">#37b059</color>
+    <!-- 文字7 红色  商城主色 -->
+    <color name="text_color_7">#f23030</color>
+    <!-- 文字8 蓝色-用户昵称 -->
+    <color name="text_color_8">#4680d1</color>
+    <!-- 文字9  -->
+    <color name="text_color_9">#bb441c</color>
+    <!-- 文字提示10 -->
+    <color name="text_color_10">#b09537</color>
+    <!-- 默认预览 -->
+    <color name="text_color_12">#cacaca</color>
+    <!-- 金黄色13 -->
+    <color name="text_color_13">#fce473</color>
+    <!-- 暗黄色14 -->
+    <color name="text_color_14">#dc871a</color>
+
+    <!-- 半透明背景  -->
+    <color name="bg_trans_gray">#c0000000</color>
+    <color name="ts_trans">#80000000</color>
+    <color name="bg_trans_white">#efffffff</color>
+    <color name="bg_zb_trans_gray">#55000000</color>
+
+    <!--猪易指数顶部灰色-->
+    <color name="zyzs_title_gray">#5A6265</color>
+    <!--圆状图形-->
+    <color name="tx_color1">#f23030</color>
+    <color name="tx_color2">#00a0fe</color>
+    <color name="tx_color3">#f69b30</color>
+
+    <color name="Transparent">#00000000</color>
+    <color name="TransparentGrey">#7F44474D</color>
+    <color name="Item">#E0E0E0</color>
+    <color name="disease_list_item_text">#336598</color>
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color>
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color>
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_laser">#ffcc0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="gray">#808080</color>
+    <color name="lightgreen">#99CC33</color>
+    <color name="green">#00CC00</color>
+    <color name="white">#FFFFFF</color>
+    <color name="GrayLight">#50BEBEBE</color>
+    <!--*************************************************************************************************************************-->
+</resources>

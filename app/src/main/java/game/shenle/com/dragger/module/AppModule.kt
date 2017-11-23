@@ -4,6 +4,7 @@ import android.app.Application
 import android.arch.persistence.room.Room
 import com.example.android.observability.persistence.AppDatabase
 import com.example.android.observability.persistence.UserDao
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import game.shenle.com.AppExecutors
@@ -20,7 +21,6 @@ class AppModule {
     fun provideUserRepository(userDao: UserDao, executor: AppExecutors): UserRepository {
         return UserRepository(userDao, executor)
     }
-
     @Provides
     @Singleton
     fun provideUserDao(db :AppDatabase): UserDao {

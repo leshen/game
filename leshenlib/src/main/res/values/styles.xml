@@ -1,0 +1,148 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme"
+           parent="AppTheme.NoActionBar">
+    </style>
+    <style name="myToolbarNavigationButtonStyle" parent="@style/Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:minWidth">56dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/bg_1</item>
+        <item name="colorPrimaryDark">@color/bg_1_press</item>
+        <item name="colorAccent">@color/bg_1</item>
+        <item name="toolbarNavigationButtonStyle">@style/myToolbarNavigationButtonStyle</item>
+    </style>
+    <!--欢迎页面主题-->
+    <style name="AppTheme.FullScreen" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay"
+           parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="Theme.AppCompat.WhiteAppBar"
+        parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/bg_2</item>
+        <item name="colorPrimaryDark">@color/bg_5</item>
+        <item name="colorAccent">@color/bg_2</item>
+    </style>
+    <style name="AppTheme.PopupOverlay"
+           parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="AppTheme.NoActionBar.AppBarOverlay"
+           parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.NoActionBar.PopupOverlay"
+           parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="LoadingDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/Transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+
+    <!-- 普通文字-->
+    <style name="NomorlText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_32</item>
+        <item name="android:textColor">@color/text_color_1</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- 普通文字-->
+    <style name="NomorlText24">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_24</item>
+        <item name="android:textColor">@color/text_color_1</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- 普通文字-->
+    <style name="NomorlText24Red">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_24</item>
+        <item name="android:textColor">@color/text_color_2</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- 普通文字-->
+    <style name="NomorlText24Gray">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_24</item>
+        <item name="android:textColor">@color/text_color_4</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- 普通文字-->
+    <style name="NomorlText24Gray3">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_24</item>
+        <item name="android:textColor">@color/text_color_3</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- 普通文字-->
+    <style name="NomorlText28">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_28</item>
+        <item name="android:textColor">@color/text_color_1</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- 普通文字-->
+    <style name="NomorlText28Gray">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_28</item>
+        <item name="android:textColor">@color/text_color_4</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- 普通文字-->
+    <style name="NomorlText28Gray3">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_28</item>
+        <item name="android:textColor">@color/text_color_3</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- 普通文字-->
+    <style name="NomorlText28Red">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_28</item>
+        <item name="android:textColor">@color/text_color_2</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- 普通文字-->
+    <style name="NomorlText28White">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_28</item>
+        <item name="android:textColor">@color/text_color_5</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- 普通文字-->
+    <style name="NomorlText32Red">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_32</item>
+        <item name="android:textColor">@color/text_color_2</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- 普通文字-->
+    <style name="NomorlText32White">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_32</item>
+        <item name="android:textColor">@color/text_color_5</item>
+        <item name="android:gravity">center</item>
+    </style>
+</resources>

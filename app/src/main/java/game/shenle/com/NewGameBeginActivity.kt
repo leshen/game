@@ -11,9 +11,9 @@ import java.util.*
  * Created by shenle on 2017/11/14.
  */
 class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
-    override fun getViewMolderClass(): Class<NewGameBeginViewModel> {
-        return NewGameBeginViewModel::class.java
-    }
+//    override fun getViewMolderClass(): Class<NewGameBeginViewModel> {
+//        return NewGameBeginViewModel::class.java
+//    }
 
     companion object {
         fun goHere() {
