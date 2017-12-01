@@ -1,18 +1,24 @@
 package lib.shenle.com.base
 
-import android.app.Application
+import android.app.Activity
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.os.Process
 import android.support.multidex.MultiDex
 import android.support.multidex.MultiDexApplication
-import com.aitangba.swipeback.ActivityLifecycleHelper
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import lib.shenle.com.utils.ActivityLifecycleHelper
+import javax.inject.Inject
+import kotlin.text.Typography.dagger
 
 /**
  * Created by shenle on 2017/11/16.
  */
-open class SLBaseApplication : MultiDexApplication() {
+abstract class SLBaseApplication : MultiDexApplication(), HasActivityInjector {
+    @Inject
+    @JvmField var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>? = null
     private var isFirstLaunch: Boolean = true
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
@@ -41,13 +47,23 @@ open class SLBaseApplication : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        registerActivityLifecycleCallbacks(ActivityLifecycleHelper.build())
         application = this
         mainThread = Thread.currentThread()
         mainThreadId = android.os.Process.myTid()
         mainThreadHandler = Handler()
         mainLoopler = mainLooper
+        initDraggerApp()
+        registerActivityLifecycleCallbacks(ActivityLifecycleHelper.build())
     }
+
+    override fun activityInjector(): DispatchingAndroidInjector<Activity>? {
+        return dispatchingAndroidInjector
+    }
+    /**
+     * 注入app dragger
+     */
+    abstract fun initDraggerApp()
+
     override fun onTerminate() {
         onDestory()
         System.exit(0)

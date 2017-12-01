@@ -10,13 +10,17 @@ buildscript {
         // in the individual module build.gradle files
     }
     repositories {
-        mavenCentral()
+        jcenter {
+            url "http://jcenter.bintray.com/"
+        }
     }
 }
 
 allprojects {
     repositories {
-        jcenter()
+        jcenter {
+            url "http://jcenter.bintray.com/"
+        }
         google()
         //Bmob的maven仓库地址--必填
         maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }

@@ -20,7 +20,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TabWidget;
 
-import game.shenle.com.R;
+import lib.shenle.com.R;
+
 
 public class BadgeView extends android.support.v7.widget.AppCompatTextView {
 	public static final int POSITION_TOP_LEFT = 1;

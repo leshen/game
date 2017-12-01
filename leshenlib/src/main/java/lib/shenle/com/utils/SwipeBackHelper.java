@@ -24,8 +24,6 @@ import android.view.animation.Interpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 
-import com.aitangba.swipeback.ActivityLifecycleHelper;
-
 /**
  * Created by fhf11991 on 2016/9/18.
  */

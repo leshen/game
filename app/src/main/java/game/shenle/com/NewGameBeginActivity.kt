@@ -1,6 +1,5 @@
 package game.shenle.com
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
 import com.example.android.observability.persistence.User
 import game.shenle.com.viewmodel.NewGameBeginViewModel
@@ -11,10 +10,6 @@ import java.util.*
  * Created by shenle on 2017/11/14.
  */
 class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
-//    override fun getViewMolderClass(): Class<NewGameBeginViewModel> {
-//        return NewGameBeginViewModel::class.java
-//    }
-
     companion object {
         fun goHere() {
 

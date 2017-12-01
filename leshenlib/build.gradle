@@ -32,15 +32,31 @@ dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api 'com.android.support:appcompat-v7:26.1.0'
     // 此处以JCore 1.1.6 版本为例。
-    api 'com.aitangba:swipeback:1.0.1'
+    //    api 'com.aitangba:swipeback:1.0.1'
     //rxandroid2
-    api 'android.arch.persistence.room:rxjava2:1.0.0-rc1'
+    api 'android.arch.persistence.room:rxjava2:1.0.0'
     api 'io.reactivex.rxjava2:rxandroid:2.0.1'
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
     api 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     api 'com.android.support.constraint:constraint-layout:1.0.2'
     api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    //在所在app builds复制下面dagger
+    kapt 'com.google.dagger:dagger-compiler:2.13'
+    api 'com.google.dagger:dagger:2.13'
+    api 'com.google.dagger:dagger-android:2.13'
+    api 'com.google.dagger:dagger-android-support:2.13'
+    // if you use the support libraries
+    kapt 'com.google.dagger:dagger-android-processor:2.13'
+    api 'com.android.support:recyclerview-v7:26.1.0'
+    api 'android.arch.lifecycle:runtime:1.0.3'
+    api 'android.arch.lifecycle:extensions:1.0.0'
+    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
+    api 'android.arch.persistence.room:runtime:1.0.0'
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
 }
 repositories {
     mavenCentral()
+}
+kapt {
+    generateStubs = true
 }

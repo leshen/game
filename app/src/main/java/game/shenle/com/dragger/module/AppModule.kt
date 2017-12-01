@@ -1,13 +1,11 @@
 package game.shenle.com.dragger.module
 
-import android.app.Application
-import android.arch.persistence.room.Room
 import com.example.android.observability.persistence.AppDatabase
 import com.example.android.observability.persistence.UserDao
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import game.shenle.com.AppExecutors
+import game.shenle.com.MyApplication
 import game.shenle.com.db.repository.UserRepository
 import javax.inject.Singleton
 
@@ -15,7 +13,10 @@ import javax.inject.Singleton
  * Created by shenle on 2017/11/16.
  */
 @Module
-class AppModule {
+class AppModule (val app: MyApplication) {
+    @Provides
+    @Singleton
+    fun provideApplication() = app
     @Provides
     @Singleton
     fun provideUserRepository(userDao: UserDao, executor: AppExecutors): UserRepository {
@@ -34,7 +35,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideDb(app: Application): AppDatabase {
-        return Room.databaseBuilder(app, AppDatabase::class.java, "bkjh.db").build()
+    fun provideDb(app: MyApplication): AppDatabase {
+        return AppDatabase.getInstance(app,"bkjh.db")
     }
 }

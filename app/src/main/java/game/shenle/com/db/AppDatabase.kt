@@ -33,14 +33,14 @@ abstract class AppDatabase : RoomDatabase() {
 
         @Volatile private var INSTANCE: AppDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase =
+        fun getInstance(context: Context,name:String): AppDatabase =
                 INSTANCE ?: synchronized(this) {
-                    INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
+                    INSTANCE ?: buildDatabase(context,name).also { INSTANCE = it }
                 }
 
-        private fun buildDatabase(context: Context) =
+        private fun buildDatabase(context: Context,name:String) =
                 Room.databaseBuilder(context.applicationContext,
-                        AppDatabase::class.java, "bkjh.db")
+                        AppDatabase::class.java, name)
                         .build()
     }
 }

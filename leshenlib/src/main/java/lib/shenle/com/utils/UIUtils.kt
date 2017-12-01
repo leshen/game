@@ -19,7 +19,6 @@ import android.widget.AdapterView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.aitangba.swipeback.ActivityLifecycleHelper
 import com.jakewharton.rxbinding2.view.RxView
 import com.trello.rxlifecycle2.android.ActivityEvent
 import io.reactivex.Observable
