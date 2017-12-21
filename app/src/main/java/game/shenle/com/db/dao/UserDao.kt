@@ -24,7 +24,11 @@ import android.arch.persistence.room.Query
 import android.os.SystemClock
 
 /**
- * Data Access Object for the users table.
+ * @Dao 指明为 Dao 类
+ * @Insert 插入操作
+ * @Update 更新操作
+ * @Delete 删除操作
+ * @Query 查询操作 ，需要指定 Sql 语句
  */
 @Dao
 interface UserDao {
@@ -34,9 +38,9 @@ interface UserDao {
 
      * @return the user from the table with a specific id.
      */
-    @Query("SELECT * FROM Users WHERE userid = :id")
+    @Query("SELECT * FROM users WHERE u_id = :id")
 //    fun getUserById(id: String): Flowable<User>
-    fun getUserById(id: String): LiveData<User>?
+    fun getUserById(id: String): LiveData<UserTable>?
 
     /**
      * Insert a user in the database. If the user already exists, replace it.
@@ -44,15 +48,11 @@ interface UserDao {
      * @param user the user to be inserted.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUser(user: User)
-
-    fun insertNewUser(id: String){
-        insertUser(User(id,SystemClock.currentThreadTimeMillis()))
-    }
+    fun insertUser(user: UserTable)
 
     /**
      * Delete all users.
      */
-    @Query("DELETE FROM Users")
+    @Query("DELETE FROM users")
     fun deleteAllUsers()
 }

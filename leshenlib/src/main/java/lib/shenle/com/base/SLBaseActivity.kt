@@ -5,25 +5,31 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.IBinder
+import android.support.v4.app.Fragment
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import lib.shenle.com.utils.SwipeBackHelper
+import javax.inject.Inject
 
 
 /**
  * Created by shenle on 2017/7/31.
  */
-abstract class SLBaseActivity : RxAppCompatActivity(), SwipeBackHelper.SlideBackManager{
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+abstract class SLBaseActivity : RxAppCompatActivity(), SwipeBackHelper.SlideBackManager, HasSupportFragmentInjector {
+    override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment>? {
+        return dispatchingAndroidInjector
     }
     fun onBack(view: View) {
         onBackPressed()
     }
+    @Inject
+    @JvmField var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>?=null
 
     // // 获取点击事件
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
@@ -79,7 +85,7 @@ abstract class SLBaseActivity : RxAppCompatActivity(), SwipeBackHelper.SlideBack
     }
 
     fun getCurrentRootView(): View {
-        return findViewById<ViewGroup>(android.R.id.content).getChildAt(0)
+        return (findViewById(android.R.id.content) as ViewGroup).getChildAt(0)
     }
 
     override fun onPause() {

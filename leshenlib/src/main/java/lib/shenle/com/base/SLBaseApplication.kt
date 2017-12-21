@@ -19,6 +19,7 @@ import kotlin.text.Typography.dagger
 abstract class SLBaseApplication : MultiDexApplication(), HasActivityInjector {
     @Inject
     @JvmField var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>? = null
+
     private var isFirstLaunch: Boolean = true
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)

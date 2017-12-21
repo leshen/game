@@ -29,6 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".NewGameBeginActivity"/>
+        <activity android:name=".GameActivity"/>
     </application>
 
 </manifest>

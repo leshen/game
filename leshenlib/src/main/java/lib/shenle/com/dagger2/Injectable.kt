@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package lib.shenle.com.dagger2;
+package lib.shenle.com.dagger2
 
 /**
  * Marks an activity / fragment injectable.
  */
-public interface Injectable {
-}
+interface Injectable

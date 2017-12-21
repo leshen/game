@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import game.shenle.com.viewmodel.BaseViewModel
 import lib.shenle.com.base.SLBaseActivity
+import lib.shenle.com.dagger2.SLViewModelFactory
+import javax.inject.Inject
 
 
 /**
@@ -12,11 +14,15 @@ import lib.shenle.com.base.SLBaseActivity
  */
 abstract class BaseActivity<T: BaseViewModel> : SLBaseActivity(), LifecycleOwner{
     lateinit var viewModel: T
+    @Inject
+    @JvmField var viewModelFactory: SLViewModelFactory?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(this.localClassName::class.java as Class<T>)
+        viewModel = ViewModelProviders.of(this,viewModelFactory!!).get(getTNameClass())
         initView()
     }
+
+    abstract fun getTNameClass(): Class<T>
 
     abstract fun initView()
 }

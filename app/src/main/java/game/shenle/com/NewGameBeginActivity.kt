@@ -1,8 +1,9 @@
 package game.shenle.com
 
 import android.arch.lifecycle.Observer
-import com.example.android.observability.persistence.User
+import com.example.android.observability.persistence.UserTable
 import game.shenle.com.viewmodel.NewGameBeginViewModel
+import lib.shenle.com.utils.UIUtils
 import java.util.*
 
 /**
@@ -10,9 +11,12 @@ import java.util.*
  * Created by shenle on 2017/11/14.
  */
 class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
+    override fun getTNameClass(): Class<NewGameBeginViewModel> {
+        return NewGameBeginViewModel::class.java
+    }
     companion object {
         fun goHere() {
-
+            UIUtils.startActivity(NewGameBeginActivity::class.java)
         }
     }
 
@@ -25,14 +29,15 @@ class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
 
     private fun checkProgress() {
         // 检查进度(新游戏和档案)
-        viewModel.getUser()?.observe(this, Observer<User> {
+        viewModel.getUser()?.observe(this, Observer<UserTable> {
             val userName = it?.userName
-            if (userName.isNullOrEmpty()) {
-                //新游戏
-
-            } else {
-                //TODO 读取档案
-            }
+//            if (userName.isNullOrEmpty()) {
+//                //新游戏
+//                GameActivity.goHere()
+//            } else {
+//                // 读取档案
+//                GameActivity.goHere()
+//            }
         })
 
     }

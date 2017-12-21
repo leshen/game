@@ -3,8 +3,8 @@ package game.shenle.com
 /**
  * Created by shenle on 2017/11/10.
  */
-val all = hashMapOf(
-        "首页说明" to MainActivity //已完成
+//val all = hashMapOf(
+//        "首页说明" to MainActivity //已完成
 //
 //        ,"猪场管家婆首页2-000" to MpfHomeActivity, //已完成
 //
@@ -131,7 +131,7 @@ val all = hashMapOf(
 //        }, //完成
 //
 //        "统计分析2-10-00" to MpfTJFXActivity?.let{}//暂时不做
-)
+//)
 
 fun all() {
 //    UrlData//接口

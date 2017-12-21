@@ -17,7 +17,7 @@
 //package com.example.android.observability.ui
 //
 //import android.arch.lifecycle.ViewModel
-//import com.example.android.observability.persistence.User
+//import com.example.android.observability.persistence.UserTable
 //import com.example.android.observability.persistence.UserDao
 //import io.reactivex.Completable
 //import io.reactivex.Flowable
@@ -48,7 +48,7 @@
 //     */
 //    fun updateUserName(userName: String): Completable {
 //        return CompletableFromAction(Action {
-//            val user = User(USER_ID, userName)
+//            val user = UserTable(USER_ID, userName)
 //            dataSource.insertUser(user)
 //        })
 //    }

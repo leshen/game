@@ -2,8 +2,6 @@ package game.shenle.com.persistence
 
 import android.support.v4.app.FragmentManager
 import game.shenle.com.MainActivity
-import game.shenle.com.R
-import game.shenle.com.fragment.ControllerFragment
 import javax.inject.Inject
 
 /**

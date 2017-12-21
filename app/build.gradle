@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -12,6 +12,10 @@ android {
         versionCode 1
         versionName "1.0"
         flavorDimensions "versionCode"
+//        compileOptions {
+//            sourceCompatibility JavaVersion.VERSION_1_8
+//            targetCompatibility JavaVersion.VERSION_1_8
+//        }
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -34,27 +38,29 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-//    implementation 'android.arch.lifecycle:runtime:1.0.3'
-//    implementation 'android.arch.lifecycle:extensions:1.0.0'
-//    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
-//    implementation 'android.arch.persistence.room:runtime:1.0.0'
-//    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+
+//    api "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     //Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
     implementation 'cn.bmob.android:bmob-sdk:3.5.5'
     //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
     implementation 'cn.bmob.android:http-legacy:1.0'
     implementation project(':leshenlib')
-    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    kapt 'com.google.dagger:dagger-compiler:2.13'
-    api 'com.google.dagger:dagger:2.13'
-    api 'com.google.dagger:dagger-android:2.13'
-    api 'com.google.dagger:dagger-android-support:2.13'
-    // if you use the support libraries
-    kapt 'com.google.dagger:dagger-android-processor:2.13'
+//    kapt 'com.google.dagger:dagger-compiler:2.13'
+//    annotationProcessor 'com.google.dagger:dagger-compiler:2.13'
+//    api 'com.google.dagger:dagger:2.13'
+//    api 'com.google.dagger:dagger-android:2.13'
+//    api 'com.google.dagger:dagger-android-support:2.13'
+//    // if you use the support libraries
+//    kapt 'com.google.dagger:dagger-android-processor:2.13'
+//    annotationProcessor 'com.google.dagger:dagger-android-processor:2.13'
+//
+//    api 'android.arch.lifecycle:runtime:1.0.0'
+//    api 'android.arch.lifecycle:extensions:1.0.0'
+//    kapt "android.arch.lifecycle:compiler:1.0.0"
+//    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
+//    api 'android.arch.persistence.room:runtime:1.0.0'
+//    kapt "android.arch.persistence.room:compiler:1.0.0"
+//    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
 }
 kapt {
     generateStubs = true

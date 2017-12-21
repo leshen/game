@@ -14,19 +14,14 @@
  * limitations under the License.
  */
 
-package com.example.android.observability.persistence
+package game.shenle.com.dragger.module;
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
-import android.arch.persistence.room.TypeConverters
-import game.shenle.com.db.Converters
+import dagger.Module;
+import dagger.android.ContributesAndroidInjector;
+import game.shenle.com.fragment.ControllerFragment;
 
-/**
- * @Database 指定操作，将 Dao 层全部集中在一起，可以指定 version 使用 entities 指定所用的 entity(table)
- * @TypeConverters 指定转换器，看要加在什么上面
- */
-@Database(entities = arrayOf(UserTable::class), version = 1)
-@TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase() {
-    abstract fun userDao(): UserDao
+@Module
+public abstract class FragmentBuildersModule {
+    @ContributesAndroidInjector
+    abstract ControllerFragment contributeControllerFragment();
 }

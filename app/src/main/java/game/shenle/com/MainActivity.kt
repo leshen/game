@@ -2,7 +2,6 @@ package game.shenle.com
 
 import cn.bmob.v3.Bmob
 import cn.bmob.v3.BmobConfig
-import game.shenle.com.R.id.tv_init
 import game.shenle.com.viewmodel.MainViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,6 +13,9 @@ import java.util.concurrent.TimeUnit
  * 先介绍
  */
 class MainActivity : BaseActivity<MainViewModel>() {
+    override fun getTNameClass(): Class<MainViewModel> {
+        return MainViewModel::class.java
+    }
 
     override fun initView() {
         setContentView(R.layout.activity_main)

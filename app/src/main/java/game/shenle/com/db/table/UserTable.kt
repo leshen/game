@@ -19,14 +19,27 @@ package com.example.android.observability.persistence
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import android.os.SystemClock
+import game.shenle.com.db.Converters
 import java.util.*
 
 @Entity(tableName = "users")
-data class User(@PrimaryKey
-                @ColumnInfo(name = "userid")
-                var id: String = UUID.randomUUID().toString(),
-                @ColumnInfo(name = "savetime")
-                val saveTime: Long){
-    @ColumnInfo(name = "username")
-    var userName: String=""
+data class UserTable constructor(
+        @PrimaryKey(autoGenerate = true)
+        @ColumnInfo(name = "id")
+        var id: Long = 0L,
+        @ColumnInfo(name = "u_create_date")
+        var createDate: Date? = null,
+        @ColumnInfo(name = "u_id")
+        var userid: String = UUID.randomUUID().toString(),
+        @ColumnInfo(name = "u_name")
+        var userName: String? = null,
+        @ColumnInfo(name = "u_phone")
+        var userPhone: String? = null,
+        @ColumnInfo(name = "u_update_date")
+        var updateDate: Date? = null,
+        @ColumnInfo(name = "u_status")
+        var status: Int? = 0) {
+    // 必须有公共构造方法
+    constructor() : this(0, Date(System.currentTimeMillis()))
 }
