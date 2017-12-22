@@ -1,2 +1,7 @@
 <resources>
+    <!--欢迎页面主题-->
+    <style name="AppTheme.WelcomePage" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@mipmap/welcome_page</item>
+    </style>
 </resources>

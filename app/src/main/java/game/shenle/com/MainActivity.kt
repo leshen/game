@@ -19,11 +19,12 @@ class MainActivity : BaseActivity<MainViewModel>() {
 
     override fun initView() {
         setContentView(R.layout.activity_main)
-        tv_init.text = "欢迎来到笔客江湖"
+        tv_init.text = "笔客江湖"
         Observable.timer(2, TimeUnit.SECONDS).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).compose(this.bindToLifecycle()).subscribe {
             //开始
             NewGameBeginActivity.goHere()
+            Observable.timer(1, TimeUnit.SECONDS).subscribe{finish()}
         }
         initBob()
     }
@@ -35,7 +36,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
         Bmob.initialize(this, "832c88805561e96e49261e5674eefd71","bmob")
 
         //第二：自v3.4.7版本开始,设置BmobConfig,允许设置请求超时时间、文件分片上传时每片的大小、文件的过期时间(单位为秒)，
-        val config = BmobConfig.Builder(this)
+//        val config = BmobConfig.Builder(this)
         ////设置appkey
         //.setApplicationId("Your Application ID")
         ////请求超时时间（单位为秒）：默认15s

@@ -1,6 +1,8 @@
 package game.shenle.com
 
+import game.shenle.com.view.OnPrintOverListener
 import game.shenle.com.viewmodel.GameViewModel
+import kotlinx.android.synthetic.main.activity_new_game_begin.*
 import lib.shenle.com.utils.UIUtils
 
 /**
@@ -20,7 +22,12 @@ class GameActivity : BaseActivity<GameViewModel>() {
 
     override fun initView() {
         setContentView(R.layout.activity_new_game_begin)
+        tv_content.setPrintText("很久很久以前...")
+        tv_content.startPrint(object:OnPrintOverListener{
+            override fun over() {
 
+            }
+        })
     }
 
 }
