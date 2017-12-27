@@ -40,7 +40,7 @@ interface UserDao {
      */
     @Query("SELECT * FROM users WHERE u_id = :id")
 //    fun getUserById(id: String): Flowable<User>
-    fun getUserById(id: String): LiveData<UserTable>?
+    fun getUserById(id: String): LiveData<UserTable>
 
     /**
      * Insert a user in the database. If the user already exists, replace it.

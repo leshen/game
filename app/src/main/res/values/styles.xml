@@ -1,7 +1,9 @@
 <resources>
     <!--欢迎页面主题-->
-    <style name="AppTheme.WelcomePage" parent="AppTheme">
+    <style name="AppTheme.my" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@mipmap/welcome_page</item>
+    </style>
+    <style name="AppTheme.WelcomePage" parent="AppTheme.my">
+        <item name="android:windowBackground">@drawable/bg_green</item>
     </style>
 </resources>

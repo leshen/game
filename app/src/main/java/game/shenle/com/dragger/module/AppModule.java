@@ -19,6 +19,7 @@ package game.shenle.com.dragger.module;
 import android.arch.persistence.room.Room;
 
 import com.example.android.observability.persistence.AppDatabase;
+import com.example.android.observability.persistence.JbDao;
 import com.example.android.observability.persistence.UserDao;
 
 import javax.inject.Singleton;
@@ -40,6 +41,10 @@ public class AppModule{
     @Provides@Singleton
     public UserDao provideUserDao(AppDatabase db){
         return db.userDao();
+    }
+    @Provides@Singleton
+    public JbDao provideJbDao(AppDatabase db){
+        return db.jbDao();
     }
 
     @Singleton@Provides

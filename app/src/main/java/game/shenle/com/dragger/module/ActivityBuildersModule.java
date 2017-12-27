@@ -21,6 +21,7 @@ import dagger.android.ContributesAndroidInjector;
 import game.shenle.com.GameActivity;
 import game.shenle.com.MainActivity;
 import game.shenle.com.NewGameBeginActivity;
+import game.shenle.com.NewUserCreateActivity;
 
 @Module
 public abstract class ActivityBuildersModule {
@@ -30,4 +31,6 @@ public abstract class ActivityBuildersModule {
     abstract GameActivity contributeGameActivity();
     @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
     abstract NewGameBeginActivity contributeNewGameBeginActivity();
+    @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
+    abstract NewUserCreateActivity contributeNewUserCreateActivity();
 }

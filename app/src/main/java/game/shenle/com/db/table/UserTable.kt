@@ -18,28 +18,35 @@ package com.example.android.observability.persistence
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
 import android.os.SystemClock
+import cn.bmob.v3.BmobACL
+import cn.bmob.v3.BmobObject
 import game.shenle.com.db.Converters
+import game.shenle.com.db.table.UserTableInter
+import org.json.JSONObject
 import java.util.*
 
 @Entity(tableName = "users")
 data class UserTable constructor(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
-        var id: Long = 0L,
+        override var id: Long = 0L,
         @ColumnInfo(name = "u_create_date")
-        var createDate: Date? = null,
+        override var createDate: Date? = null,
+        @ColumnInfo(name = "u_create_jb")//剧本编号
+        override var createDateJb: Int? = null,
         @ColumnInfo(name = "u_id")
-        var userid: String = UUID.randomUUID().toString(),
+        override var userid: String = UUID.randomUUID().toString(),
         @ColumnInfo(name = "u_name")
-        var userName: String? = null,
+        override var userName: String? = null,
         @ColumnInfo(name = "u_phone")
-        var userPhone: String? = null,
+        override var userPhone: String? = null,
         @ColumnInfo(name = "u_update_date")
-        var updateDate: Date? = null,
+        override var updateDate: Date? = null,
         @ColumnInfo(name = "u_status")
-        var status: Int? = 0) {
+        override var status: Int? = 0) : UserTableInter {
     // 必须有公共构造方法
     constructor() : this(0, Date(System.currentTimeMillis()))
 }

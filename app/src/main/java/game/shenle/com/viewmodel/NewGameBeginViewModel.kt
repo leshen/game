@@ -4,6 +4,7 @@ import game.shenle.com.db.repository.UserRepository
 import javax.inject.Inject
 import com.example.android.observability.persistence.UserTable
 import android.arch.lifecycle.LiveData
+import game.shenle.com.db.repository.Resource
 
 /**
  * Created by shenle on 2017/11/15.
@@ -11,7 +12,7 @@ import android.arch.lifecycle.LiveData
 
 class NewGameBeginViewModel : BaseViewModel {
     private var userRepo: UserRepository
-    private var user: LiveData<UserTable>? = null
+    private var user: LiveData<Resource<UserTable>>? = null
     @Inject
     constructor(userRepo: UserRepository):super(){
         this.userRepo = userRepo
@@ -23,7 +24,7 @@ class NewGameBeginViewModel : BaseViewModel {
         user = userRepo.getUser(userId)
     }
 
-    fun getUser(): LiveData<UserTable>? {
+    fun getUser(): LiveData<Resource<UserTable>>? {
         return user
     }
 }

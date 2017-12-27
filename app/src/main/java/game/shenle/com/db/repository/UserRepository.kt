@@ -6,7 +6,10 @@ import javax.inject.Singleton
 import com.example.android.observability.persistence.UserDao
 import game.shenle.com.dragger.AppExecutors
 import javax.inject.Inject
-
+import cn.bmob.v3.exception.BmobException
+import cn.bmob.v3.listener.QueryListener
+import cn.bmob.v3.BmobQuery
+import com.example.android.observability.persistence.UserHttp
 
 
 /**
@@ -23,21 +26,32 @@ class UserRepository {
         this.executor = executor
     }
 
-    fun getUser(userId: String): LiveData<UserTable> {
-        refreshUser(userId)
-        // return a LiveData directly from the database.
-        return userDao.getUserById(userId)!!
-    }
-
-    private fun refreshUser(userId: String) {
-        executor.diskIO().execute{
-            // running in a background thread
-            // check if user was fetched recently
-            val user = userDao.getUserById(userId)
-            user?:let {
-                // 如果用服务端,这里从服务器加载
-                userDao.insertUser(UserTable())
+    fun getUser(userId: String): LiveData<Resource<UserTable>> {
+        return object : NetworkBoundResource<UserTable,UserHttp>(executor) {
+            override fun fetchFromNetwork(dbSource: LiveData<UserTable>) {
+                val query = BmobQuery<UserHttp>()
+                query.getObject(userId, object : QueryListener<UserHttp>() {
+                    override fun done(userHttp: UserHttp?, e: BmobException?) {
+                        if (e == null) {
+                            onFetchSuccess(userHttp!!,dbSource)
+                        } else {
+                            onFetchFailed(e,dbSource)
+                        }
+                    }
+                })
             }
-        }
+
+            override fun saveCallResult(item: UserHttp) {
+                userDao.insertUser(item.toTable())
+            }
+
+            override fun shouldFetch(data: UserTable?): Boolean {
+                return data == null
+            }
+
+            override fun loadFromDb(): LiveData<UserTable> {
+                return userDao.getUserById(userId)
+            }
+        }.asLiveData()
     }
 }
