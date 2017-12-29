@@ -6,4 +6,12 @@
     <style name="AppTheme.WelcomePage" parent="AppTheme.my">
         <item name="android:windowBackground">@drawable/bg_green</item>
     </style>
+    <style name="textStyle24Nomorl">
+        <item name="android:textSize">@dimen/text_size_24</item>
+        <item name="android:textColor">@color/text_color_1</item>
+    </style>
+    <style name="textStyle24Red">
+        <item name="android:textSize">@dimen/text_size_24</item>
+        <item name="android:textColor">@color/text_color_2</item>
+    </style>
 </resources>

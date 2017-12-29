@@ -19,6 +19,7 @@ import com.example.android.observability.persistence.UserHttp
 class UserRepository {
     private val userDao: UserDao
     private val executor: AppExecutors
+    private var userTable: LiveData<Resource<UserTable>>?=null
 
     @Inject
     constructor(userDao: UserDao, executor: AppExecutors){
@@ -26,23 +27,23 @@ class UserRepository {
         this.executor = executor
     }
 
-    fun getUser(userId: String): LiveData<Resource<UserTable>> {
-        return object : NetworkBoundResource<UserTable,UserHttp>(executor) {
+    fun getUser(userId: String): LiveData<Resource<UserTable>>? {
+        userTable = object : NetworkBoundResource<UserTable>(executor) {
             override fun fetchFromNetwork(dbSource: LiveData<UserTable>) {
                 val query = BmobQuery<UserHttp>()
                 query.getObject(userId, object : QueryListener<UserHttp>() {
                     override fun done(userHttp: UserHttp?, e: BmobException?) {
                         if (e == null) {
-                            onFetchSuccess(userHttp!!,dbSource)
+                            onFetchSuccess(userHttp?.toTable()!!, dbSource!!)
                         } else {
-                            onFetchFailed(e,dbSource)
+                            onFetchFailed(e, dbSource!!)
                         }
                     }
                 })
             }
 
-            override fun saveCallResult(item: UserHttp) {
-                userDao.insertUser(item.toTable())
+            override fun saveCallResult(item: UserTable) {
+                userDao.insertUser(item)
             }
 
             override fun shouldFetch(data: UserTable?): Boolean {
@@ -53,5 +54,6 @@ class UserRepository {
                 return userDao.getUserById(userId)
             }
         }.asLiveData()
+        return userTable
     }
 }

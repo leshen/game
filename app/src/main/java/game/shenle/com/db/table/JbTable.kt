@@ -26,12 +26,15 @@ import java.util.*
 
 @Entity(tableName = "jb")
 data class JbTable constructor(
-        @PrimaryKey(autoGenerate = true)
+        @PrimaryKey(autoGenerate = false)
         @ColumnInfo(name = "id")
-        var id: Long = 0L,
+        var objectId: String = "",
 
         @ColumnInfo(name = "jb_create_time")//创建时间
-        var jbCreateTime: Date? = null,
+        var createdAt: String? = null,
+
+        @ColumnInfo(name = "jb_update_date")//更新时间
+        var updatedAt: String? = null,
 
         @ColumnInfo(name = "jb_title")//剧本名称
         var jbTitle: String = "",
@@ -40,16 +43,11 @@ data class JbTable constructor(
         var jbContent: String = "",
 
         @ColumnInfo(name = "jb_auth")//作者
-        var userName: String = "",
+        var userName: String? = null,
 
         @ColumnInfo(name = "jb_auth_phone")//作者电话
         var jbAuthPhone: String? = null,
 
-        @ColumnInfo(name = "jb_update_date")//更新时间
-        var jbUpdateDate: Date? = null,
-
         @ColumnInfo(name = "jb_status")//剧本完成状态 0未完成 1完成
         var jbStatus: Int? = 0)  {
-    // 必须有公共构造方法
-    constructor(title:String,content:String,userName: String) : this(0, Date(System.currentTimeMillis()),title,content,userName)
-}
+   }

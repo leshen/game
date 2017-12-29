@@ -1,5 +1,6 @@
 package game.shenle.com
 
+import android.os.Bundle
 import game.shenle.com.view.OnPrintOverListener
 import game.shenle.com.viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.activity_game.*
@@ -15,8 +16,10 @@ class GameActivity : BaseActivity<GameViewModel>() {
     }
 
     companion object {
-        fun goHere() {
-            UIUtils.startActivity(GameActivity::class.java)
+        fun goHere(id: String) {
+            val bundle = Bundle()
+            bundle.putString("jbId",id)
+            UIUtils.startActivity(GameActivity::class.java,bundle)
         }
     }
 
@@ -30,4 +33,10 @@ class GameActivity : BaseActivity<GameViewModel>() {
         })
     }
 
+    override fun initData(savedInstanceState: Bundle?) {
+        savedInstanceState?.let {
+            val jbId = savedInstanceState.getLong("jbId")
+            jbId
+        }
+    }
 }

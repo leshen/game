@@ -38,9 +38,17 @@ interface JbDao {
 
      * @return the user from the table with a specific id.
      */
+    @Query("SELECT * FROM jb LIMIT :s ,:e")
+//    fun getUserById(id: String): Flowable<User>
+    fun getJbAll(s :Int,e :Int): LiveData<List<JbTable>>
+    /**
+     * Get a user by id.
+
+     * @return the user from the table with a specific id.
+     */
     @Query("SELECT * FROM jb WHERE id = :id")
 //    fun getUserById(id: String): Flowable<User>
-    fun getJbById(id: String): LiveData<JbTable>?
+    fun getJbById(id: String): LiveData<JbTable>
 
     /**
      * Insert a user in the database. If the user already exists, replace it.

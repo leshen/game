@@ -7,6 +7,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.example.android.observability.persistence.UserTable
 import game.shenle.com.db.repository.Resource
+import game.shenle.com.db.repository.Status
 import game.shenle.com.viewmodel.NewGameBeginViewModel
 import kotlinx.android.synthetic.main.activity_new_game_begin.*
 import kotlinx.android.synthetic.main.holder_game_begin_select.view.*
@@ -28,16 +29,17 @@ class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
         }
     }
 
-    private val listData = arrayListOf("单人旅程","双人旅程","龙套体验","上帝视角旁观","关于我们","上帝视角管理")
+    private val listData = arrayListOf("新建游戏","单人旅程","双人旅程","龙套体验","上帝视角旁观","关于我们","上帝视角管理")
     override fun initView() {
         setContentView(R.layout.activity_new_game_begin)
         viewModel.init(UUID.randomUUID().toString())
+        initRecyleView(listData)
         checkProgress()
     }
 
     private lateinit var baseAdapter: SlBaseAdapter<String>
 
-    private fun initRecyleView() {
+    private fun initRecyleView(listData:List<String>) {
         rv.layoutManager = LinearLayoutManager(this)
         baseAdapter = SlBaseAdapter(R.layout.holder_game_begin_select, listData, object : SlBaseAdapter.BaseAdapterInterface<String> {
             override fun setData(v: View, item: String) {
@@ -52,7 +54,8 @@ class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
                     "新建游戏"->{
                         NewUserCreateActivity.goHere()}
                     "继续游戏"->{
-                        GameActivity.goHere()}
+                        GameActivity.goHere(user?.data?.jbId!!)
+                    }
                     "单人旅程"->{UIUtils.showToastSafe("紧张研发中...")}
                     "双人旅程"->{UIUtils.showToastSafe("紧张研发中...")}
                     "龙套体验"->{UIUtils.showToastSafe("紧张研发中...")}
@@ -63,18 +66,29 @@ class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
         }
     }
 
+    private var user: Resource<UserTable>?=null
+
     private fun checkProgress() {
         // 检查进度(新游戏和档案)
         viewModel.getUser()?.observe(this, Observer<Resource<UserTable>> {
-            val userName = it?.data?.userName
-            if (userName.isNullOrEmpty()) {
-                //新游戏
-                listData.add(0,"新建游戏")
-                initRecyleView()
-            } else {
-                // 读取档案
-                listData.add(0,"继续游戏")
-                initRecyleView()
+            if (it?.status == Status.SUCCESS) {
+                this.user = it
+                val userName = it?.data?.userName
+                if (userName.isNullOrEmpty()) {
+                    //新游戏
+                    if (listData.contains("继续游戏")) {
+                        listData.remove("继续游戏")
+                        baseAdapter.replaceData(listData)
+                    }
+                } else {
+                    // 读取档案
+                    if (!listData.contains("继续游戏")) {
+                        listData.add(0, "继续游戏")
+                        baseAdapter.replaceData(listData)
+                    }
+                }
+            }else if (it?.status == Status.ERROR){
+                UIUtils.showToastSafe(it?.message)
             }
         })
 

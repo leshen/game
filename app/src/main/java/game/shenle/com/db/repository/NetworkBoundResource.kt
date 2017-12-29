@@ -25,6 +25,7 @@ import cn.bmob.v3.exception.BmobException
 import java.util.Objects
 
 import game.shenle.com.dragger.AppExecutors
+import lib.shenle.com.utils.UIUtils
 
 /**
  * A generic class that can provide a resource backed by both the sqlite database and the network.
@@ -35,7 +36,7 @@ import game.shenle.com.dragger.AppExecutors
  * @param <ResultType>
  * @param <RequestType>
 </RequestType></ResultType> */
-abstract class NetworkBoundResource<ResultType,RequestType> @MainThread
+abstract class NetworkBoundResource<ResultType> @MainThread
 internal constructor(private val appExecutors: AppExecutors) {
 
     private val result = MediatorLiveData<Resource<ResultType>>()
@@ -43,15 +44,15 @@ internal constructor(private val appExecutors: AppExecutors) {
     init {
         result.setValue(Resource.loading<ResultType>(null))
         val dbSource = loadFromDb()
-            result.addSource(dbSource) { data ->
-                result.removeSource(dbSource)
-                if (shouldFetch(data)) {
-                    result.addSource(dbSource) { newData -> setValue(Resource.loading(newData)) }
-                    fetchFromNetwork(dbSource)
-                } else {
-                    result.addSource(dbSource) { newData -> setValue(Resource.success(newData)) }
-                }
+        result.addSource(dbSource) { data ->
+            result.removeSource(dbSource)
+            if (shouldFetch(data)) {
+                result.addSource(dbSource) { newData -> setValue(Resource.loading(newData)) }
+                fetchFromNetwork(dbSource)
+            } else {
+                result.addSource(dbSource) { newData -> setValue(Resource.success(newData)) }
             }
+        }
     }
 
     abstract fun fetchFromNetwork(dbSource: LiveData<ResultType>)
@@ -63,10 +64,10 @@ internal constructor(private val appExecutors: AppExecutors) {
         }
     }
 
-    fun onFetchSuccess(requestType: RequestType, dbSource: LiveData<ResultType>) {
+    fun onFetchSuccess(resultType: ResultType, dbSource: LiveData<ResultType>) {
         result.removeSource(dbSource)
         appExecutors.diskIO().execute {
-            saveCallResult(requestType)
+            saveCallResult(resultType)
             appExecutors.mainThread().execute {
                 // we specially request a new live data,
                 // otherwise we will get immediately last cached value,
@@ -89,7 +90,7 @@ internal constructor(private val appExecutors: AppExecutors) {
     }
 
     @WorkerThread
-    protected abstract fun saveCallResult(item: RequestType)
+    protected abstract fun saveCallResult(item: ResultType)
 
     @MainThread
     protected abstract fun shouldFetch(data: ResultType?): Boolean

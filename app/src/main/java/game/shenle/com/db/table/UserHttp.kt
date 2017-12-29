@@ -19,35 +19,33 @@ package com.example.android.observability.persistence
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.PrimaryKey
 import cn.bmob.v3.BmobObject
-import game.shenle.com.db.table.UserTableInter
+import com.google.gson.Gson
 import game.shenle.com.utils.BaseParse
 import org.json.JSONObject
 import java.util.*
 
 class UserHttp private constructor(
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = "id")
-        override var id: Long = 0L,
+
         @ColumnInfo(name = "u_create_date")
-        override var createDate: Date? = null,
-        @ColumnInfo(name = "u_create_jb")//剧本编号
-        override var createDateJb: Int? = null,
-        @ColumnInfo(name = "u_id")
-        override var userid: String = UUID.randomUUID().toString(),
+        var createDate: Date? = null,
+
+        @ColumnInfo(name = "jb_id")//剧本编号
+        var jbId: String? = null,
+
         @ColumnInfo(name = "u_name")
-        override var userName: String? = null,
+        var userName: String? = null,
+
         @ColumnInfo(name = "u_phone")
-        override var userPhone: String? = null,
-        @ColumnInfo(name = "u_update_date")
-        override var updateDate: Date? = null,
+        var userPhone: String? = null,
+
         @ColumnInfo(name = "u_status")
-        override var status: Int? = 0) : BmobObject(),UserTableInter {
+        var status: Int? = 0)  : BmobObject() {
         companion object {
             fun getInstance(table :UserTable):UserHttp{
-                    return BaseParse.parse(JSONObject().put("",table).toString(),UserHttp::class.java)
+                    return BaseParse.parse(Gson().toJson(table).toString(),UserHttp::class.java)
             }
         }
         fun toTable():UserTable{
-                return BaseParse.parse(JSONObject().put("",this).toString(),UserTable::class.java)
+                return BaseParse.parse(Gson().toJson(this).toString(),UserTable::class.java)
         }
 }

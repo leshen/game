@@ -17,23 +17,11 @@
 package com.example.android.observability.persistence
 
 import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
-import android.os.SystemClock
 import cn.bmob.v3.BmobObject
-import game.shenle.com.db.Converters
+import com.google.gson.Gson
 import game.shenle.com.utils.BaseParse
-import org.json.JSONObject
-import java.util.*
 
 data class JbHttp constructor(
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = "id")
-        var id: Long = 0L,
-
-        @ColumnInfo(name = "jb_create_time")//创建时间
-        var jbCreateTime: Date? = null,
-
         @ColumnInfo(name = "jb_title")//剧本名称
         var jbTitle: String = "",
 
@@ -41,21 +29,18 @@ data class JbHttp constructor(
         var jbContent: String = "",
 
         @ColumnInfo(name = "jb_auth")//作者
-        var userName: String = "",
+        var userName: String? = null,
 
         @ColumnInfo(name = "jb_auth_phone")//作者电话
         var jbAuthPhone: String? = null,
-
-        @ColumnInfo(name = "jb_update_date")//更新时间
-        var jbUpdateDate: Date? = null,
 
         @ColumnInfo(name = "jb_status")//剧本完成状态 0未完成 1完成
         var jbStatus: Int? = 0)  : BmobObject(){
         companion object {
                 fun getInstance(table :JbTable):JbHttp{
-                        return BaseParse.parse(JSONObject().put("",table).toString(),JbHttp::class.java)
+                        return BaseParse.parse(Gson().toJson(table).toString(),JbHttp::class.java)
                 }
         }
         fun toTable():JbTable{
-                return BaseParse.parse(JSONObject().put("",this).toString(),JbTable::class.java)
+                return BaseParse.parse(Gson().toJson(this).toString(),JbTable::class.java)
         }}

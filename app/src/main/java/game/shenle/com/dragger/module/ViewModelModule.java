@@ -7,6 +7,7 @@ import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
 import game.shenle.com.NewUserCreateActivity;
+import game.shenle.com.viewmodel.CreateJbViewModel;
 import game.shenle.com.viewmodel.GameViewModel;
 import game.shenle.com.viewmodel.MainViewModel;
 import game.shenle.com.viewmodel.NewGameBeginViewModel;
@@ -35,4 +36,8 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(NewUserCreateViewModel.class)
     abstract ViewModel bindNewUserCreateViewModel(NewUserCreateViewModel newUserCreateViewModel);
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateJbViewModel.class)
+    abstract ViewModel bindCreateJbViewModel(CreateJbViewModel createJbViewModel);
 }

@@ -20,6 +20,10 @@ abstract class BaseActivity<T: BaseViewModel> : SLBaseActivity(), LifecycleOwner
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this,viewModelFactory!!).get(getTNameClass())
         initView()
+        initData(savedInstanceState)
+    }
+
+    open fun initData(savedInstanceState: Bundle?) {
     }
 
     abstract fun getTNameClass(): Class<T>

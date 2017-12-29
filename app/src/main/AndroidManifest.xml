@@ -36,6 +36,7 @@
         <activity android:name=".NewGameBeginActivity"/>
         <activity android:name=".GameActivity"/>
         <activity android:name=".NewUserCreateActivity"/>
+        <activity android:name=".CreateJbActivity"/>
     </application>
 
 </manifest>

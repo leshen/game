@@ -18,6 +18,7 @@ package game.shenle.com.dragger.module;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
+import game.shenle.com.CreateJbActivity;
 import game.shenle.com.GameActivity;
 import game.shenle.com.MainActivity;
 import game.shenle.com.NewGameBeginActivity;
@@ -33,4 +34,6 @@ public abstract class ActivityBuildersModule {
     abstract NewGameBeginActivity contributeNewGameBeginActivity();
     @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
     abstract NewUserCreateActivity contributeNewUserCreateActivity();
+    @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
+    abstract CreateJbActivity contributeCreateJbActivity();
 }
