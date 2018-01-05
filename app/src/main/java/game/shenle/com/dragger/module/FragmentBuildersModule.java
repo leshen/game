@@ -19,9 +19,15 @@ package game.shenle.com.dragger.module;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import game.shenle.com.fragment.ControllerFragment;
+import game.shenle.com.fragment.GameUserInfoFragment;
+import game.shenle.com.fragment.MainGameFragment;
 
 @Module
 public abstract class FragmentBuildersModule {
     @ContributesAndroidInjector
     abstract ControllerFragment contributeControllerFragment();
+    @ContributesAndroidInjector
+    abstract GameUserInfoFragment contributeGameUserInfoFragment();
+    @ContributesAndroidInjector
+    abstract MainGameFragment contributeMainGameFragment();
 }

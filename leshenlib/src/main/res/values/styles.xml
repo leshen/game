@@ -104,7 +104,18 @@
         <item name="android:textColor">@color/text_color_4</item>
         <item name="android:gravity">center</item>
     </style>
-
+    <!-- 分割线1 -->
+    <style name="FenLine1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/fg_line_1</item>
+    </style>
+    <!-- 分割线2 -->
+    <style name="FenLine2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/fg_line_2</item>
+    </style>
     <!-- 普通文字-->
     <style name="NomorlText28Gray3">
         <item name="android:layout_width">wrap_content</item>

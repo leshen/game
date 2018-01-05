@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="50dp">
+    <View style="@style/FenLine1"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+    android:gravity="center">
+    <Button
+        android:id="@+id/button1"
+        android:layout_weight="1"
+        android:text="控制器1"
+        android:background="@color/bg_green"
+        style="@style/NomorlText24"/>
+    <Button
+        android:id="@+id/button2"
+        android:layout_weight="1"
+        android:text="控制器2"
+        android:background="@color/bg_green"
+        style="@style/NomorlText24"/>
+    <Button
+        android:id="@+id/button3"
+        android:layout_weight="1"
+        android:text="控制器3"
+        android:background="@color/bg_green"
+        style="@style/NomorlText24"/>
+    <Button
+        android:id="@+id/button4"
+        android:layout_weight="1"
+        android:text="控制器4"
+        android:background="@color/bg_green"
+        style="@style/NomorlText24"/>
+    <Button
+        android:id="@+id/button5"
+        android:layout_weight="1"
+        android:text="控制器5"
+        android:background="@color/bg_green"
+        style="@style/NomorlText24"/>
+    </LinearLayout>
+</RelativeLayout>

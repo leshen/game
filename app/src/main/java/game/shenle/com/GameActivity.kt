@@ -1,6 +1,10 @@
 package game.shenle.com
 
+import android.app.Activity
 import android.os.Bundle
+import game.shenle.com.fragment.ControllerFragment
+import game.shenle.com.fragment.GameUserInfoFragment
+import game.shenle.com.fragment.MainGameFragment
 import game.shenle.com.view.OnPrintOverListener
 import game.shenle.com.viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.activity_game.*
@@ -25,18 +29,30 @@ class GameActivity : BaseActivity<GameViewModel>() {
 
     override fun initView() {
         setContentView(R.layout.activity_game)
-        tv_content.setPrintText("很久很久以前...")
-        tv_content.startPrint(object:OnPrintOverListener{
-            override fun over() {
-
-            }
-        })
     }
 
+    private var jbId: String?=null
+
     override fun initData(savedInstanceState: Bundle?) {
-        savedInstanceState?.let {
-            val jbId = savedInstanceState.getLong("jbId")
-            jbId
+        savedInstanceState?:let {
+            jbId = intent.getStringExtra("jbId")//剧本id
+            val gameUserInfoFragment = GameUserInfoFragment.getInstance(jbId)
+            supportFragmentManager.beginTransaction().replace(R.id.fl_info,gameUserInfoFragment,"GameUserInfoFragment").commitAllowingStateLoss()
+            val controllerFragment = ControllerFragment.getInstance(jbId)
+            supportFragmentManager.beginTransaction().replace(R.id.fl_controller,controllerFragment,"ControllerFragment").commitAllowingStateLoss()
+            val mainGameFragment = MainGameFragment.getInstance(jbId)
+            supportFragmentManager.beginTransaction().replace(R.id.fl_main,mainGameFragment,"MainGameFragment").commitAllowingStateLoss()
         }
+    }
+    override fun getSlideActivity(): Activity {
+        return this
+    }
+
+    override fun supportSlideBack(): Boolean {
+        return false
+    }
+
+    override fun canBeSlideBack(): Boolean {
+        return true
     }
 }

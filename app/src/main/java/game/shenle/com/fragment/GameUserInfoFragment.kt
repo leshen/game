@@ -7,21 +7,20 @@ import android.view.ViewGroup
 import game.shenle.com.BaseFragment
 import game.shenle.com.R
 import game.shenle.com.viewmodel.GameControllerModel
-import game.shenle.com.viewmodel.GameMainModel
+import game.shenle.com.viewmodel.GameUserInfoModel
 import lib.shenle.com.base.SLBaseFragment
 
 /**
  * 控制器
  * Created by shenle on 2017/12/1.
  */
-class ControllerFragment : BaseFragment<GameControllerModel>() {
-    override fun getTNameClass(): Class<GameControllerModel> {
-        return GameControllerModel::class.java
+class GameUserInfoFragment : BaseFragment<GameUserInfoModel>() {
+    override fun getTNameClass(): Class<GameUserInfoModel> {
+        return GameUserInfoModel::class.java
     }
-
     companion object {
-        fun getInstance(jbId :String?):ControllerFragment{
-            val gameUserInfoFragment = Instance.controllerFragment
+        fun getInstance(jbId :String?):GameUserInfoFragment{
+            val gameUserInfoFragment = Instance.gameUserInfoFragment
             jbId?.let {
                 val bundle = Bundle()
                 bundle.putString("jbId",jbId)
@@ -31,10 +30,10 @@ class ControllerFragment : BaseFragment<GameControllerModel>() {
         }
     }
     private object Instance{
-        val controllerFragment  = ControllerFragment()
+        val gameUserInfoFragment  = GameUserInfoFragment()
     }
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_game_controller,container,false)
+        val view = inflater?.inflate(R.layout.fragment_game_user_info,container,false)
         return view
     }
 }

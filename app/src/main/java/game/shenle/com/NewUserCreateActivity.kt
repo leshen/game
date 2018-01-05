@@ -1,11 +1,9 @@
 package game.shenle.com
 
 import android.arch.lifecycle.Observer
-import android.nfc.tech.MifareUltralight.PAGE_SIZE
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
 import android.view.View
-import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.example.android.observability.persistence.JbTable
@@ -81,7 +79,7 @@ class NewUserCreateActivity : BaseActivity<NewUserCreateViewModel>() {
                 if (it?.status == Status.ERROR) {
                     baseAdapter?.loadMoreFail()
                 } else if(it?.status == Status.SUCCESS){
-                    baseAdapter?.addData(it?.data!!)
+                    baseAdapter?.addData(baseAdapter?.data!!.size-1,it?.data!!)
                     if (it?.data?.size!! < 10) {
                         baseAdapter?.loadMoreEnd()
                     } else {
