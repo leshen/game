@@ -9,6 +9,7 @@ import dagger.multibindings.IntoMap;
 import game.shenle.com.NewUserCreateActivity;
 import game.shenle.com.fragment.GameUserInfoFragment;
 import game.shenle.com.viewmodel.CreateJbViewModel;
+import game.shenle.com.viewmodel.EditJbViewModel;
 import game.shenle.com.viewmodel.GameControllerModel;
 import game.shenle.com.viewmodel.GameMainModel;
 import game.shenle.com.viewmodel.GameUserInfoModel;
@@ -26,14 +27,17 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(GameMainModel.class)
     abstract ViewModel bindGameMainModel(GameMainModel gameViewModel);
+
     @Binds
     @IntoMap
     @ViewModelKey(GameControllerModel.class)
     abstract ViewModel bindGameControllerModel(GameControllerModel gameViewModel);
+
     @Binds
     @IntoMap
     @ViewModelKey(GameUserInfoModel.class)
     abstract ViewModel bindGameUserInfoModel(GameUserInfoModel gameViewModel);
+
     @Binds
     @IntoMap
     @ViewModelKey(GameViewModel.class)
@@ -48,12 +52,19 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(NewGameBeginViewModel.class)
     abstract ViewModel bindNewGameBeginViewModel(NewGameBeginViewModel newGameBeginViewModel);
+
     @Binds
     @IntoMap
     @ViewModelKey(NewUserCreateViewModel.class)
     abstract ViewModel bindNewUserCreateViewModel(NewUserCreateViewModel newUserCreateViewModel);
+
     @Binds
     @IntoMap
     @ViewModelKey(CreateJbViewModel.class)
     abstract ViewModel bindCreateJbViewModel(CreateJbViewModel createJbViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EditJbViewModel.class)
+    abstract ViewModel bindEditJbViewModel(EditJbViewModel editJbViewModel);
 }

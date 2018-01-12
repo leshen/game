@@ -39,8 +39,10 @@ interface JbDao {
      * @return the user from the table with a specific id.
      */
     @Query("SELECT * FROM jb LIMIT :s ,:e")
-//    fun getUserById(id: String): Flowable<User>
     fun getJbAll(s :Int,e :Int): LiveData<List<JbTable>>
+    @Query("SELECT * FROM jb")
+//    fun getUserById(id: String): Flowable<User>
+    fun getJbAll(): LiveData<List<JbTable>>
     /**
      * Get a user by id.
 
@@ -63,4 +65,9 @@ interface JbDao {
      */
     @Query("DELETE FROM jb WHERE id = :id")
     fun deleteJb(id: String)
+    /**
+     * Delete jb.
+     */
+    @Query("DELETE FROM jb")
+    fun deleteAll()
 }

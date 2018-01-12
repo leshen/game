@@ -62,7 +62,7 @@ class JbRepository {
             override fun fetchFromNetwork(dbSource: LiveData<List<JbTable>>) {
                 val query = BmobQuery<JbHttp>()
 //              //查询playerName叫“比目”的数据
-//              query.addWhereEqualTo("playerName", "比目")
+              query.addWhereNotEqualTo("jbStatus", 0)
 //              返回50条数据，如果不加上这条语句，默认返回10条数据
                 query.setLimit(10)
                 query.setSkip(10*(page-1))
@@ -83,6 +83,9 @@ class JbRepository {
             }
 
             override fun saveCallResult(item: List<JbTable>) {
+                if (page==1) {
+                    jbDao.deleteAll()
+                }
                 for (i in item) {
                     jbDao.insertJb(i)
                 }
@@ -93,7 +96,7 @@ class JbRepository {
             }
 
             override fun loadFromDb(): LiveData<List<JbTable>> {
-                return jbDao.getJbAll(10*(page-1)+1,10*page)
+                return jbDao.getJbAll(10*(page-1),10)
             }
         }.asLiveData()
     }

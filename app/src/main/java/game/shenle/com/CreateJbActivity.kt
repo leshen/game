@@ -16,15 +16,19 @@ class CreateJbActivity : BaseActivity<CreateJbViewModel>(), View.OnClickListener
     override fun onClick(v: View?) {
         when(v){
             bt_submit->{
+                bt_submit.isEnabled = false
                 if(viewModel.checkOk(tl_title,tl_jj)){
                     val jbHttp = JbHttp(tl_title.editText?.getText().toString(),tl_jj.editText?.getText().toString())
                     viewModel.submitJb(jbHttp).observe(this, Observer {
                         if (it?.status==Status.SUCCESS){
                             finish()
                         }else if (it?.status==Status.ERROR){
+                            bt_submit.isEnabled = true
                             UIUtils.showToastSafe(it?.message)
                         }
                     })
+                }else{
+                    bt_submit.isEnabled = true
                 }
             }
         }

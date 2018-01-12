@@ -42,7 +42,6 @@ dependencies {
     implementation 'cn.bmob.android:bmob-sdk:3.5.5'
     //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
     implementation 'cn.bmob.android:http-legacy:1.0'
-    implementation project(':leshenlib')
     api "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     kapt 'com.google.dagger:dagger-compiler:2.13'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.13'
@@ -68,6 +67,8 @@ dependencies {
     compile 'skin.support:skin-support-constraint-layout:2.2.2'
     // skin-support-constraint-layout ConstraintLayout 控件支持[可选]
     api 'com.android.support:appcompat-v7:26.+'
+    api 'com.github.anzaizai:EasySwipeMenuLayout:1.1.2'
+    implementation project(':book')
 }
 kapt {
     generateStubs = true
