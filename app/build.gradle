@@ -68,7 +68,7 @@ dependencies {
     // skin-support-constraint-layout ConstraintLayout 控件支持[可选]
     api 'com.android.support:appcompat-v7:26.+'
     api 'com.github.anzaizai:EasySwipeMenuLayout:1.1.2'
-    implementation project(':book')
+    implementation project(':leshenlib')
 }
 kapt {
     generateStubs = true

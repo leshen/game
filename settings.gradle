@@ -1,1 +1,1 @@
-include ':app', ':leshenlib', ':book'
+include ':app', ':leshenlib'

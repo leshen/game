@@ -63,7 +63,7 @@ dependencies {
     api 'android.arch.persistence.room:runtime:1.0.0'
     kapt "android.arch.persistence.room:compiler:1.0.0"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
     //    compile 'com.github.bumptech.glide:glide:4.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
     kapt 'com.github.bumptech.glide:compiler:4.0.0'
