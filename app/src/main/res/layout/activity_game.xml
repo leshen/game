@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="@color/bg_green">
+    android:background="@color/bg_green">
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
         android:layout_above="@+id/fl_controller"
+        android:fitsSystemWindows="true"
         tools:context=".NewGameBeginActivity"
         tools:openDrawer="start">
 

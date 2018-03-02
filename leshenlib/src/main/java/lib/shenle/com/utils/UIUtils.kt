@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.Toolbar
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,19 +41,45 @@ object UIUtils {
     /**
      * dip转换px
      */
-    fun dip2px(dip: Int): Int {
-        val scale = context.resources.displayMetrics.density
-        return (dip * scale + 0.5f).toInt()
+    fun dip2px(dip: Float): Int {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dip, context.resources.displayMetrics).toInt()
     }
 
     /**
-     * pxz转换dip
+     * px转dp
+     *
+     * @param context
+     * @param pxVal
+     * @return
      */
-    fun px2dip(px: Int): Int {
+    fun px2dp(context: Context, pxVal: Float): Float {
         val scale = context.resources.displayMetrics.density
-        return (px / scale + 0.5f).toInt()
+        return pxVal / scale
     }
 
+    /**
+     * px转sp
+     *
+     * @param
+     * @param pxVal
+     * @return
+     */
+    fun px2sp(context: Context, pxVal: Float): Float {
+        return pxVal / context.resources.displayMetrics.scaledDensity
+    }
+
+    /**
+     * sp转px
+     *
+     * @param context
+     * @param
+     * @return
+     */
+    fun sp2px(context: Context, spVal: Float): Int {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+                spVal, context.resources.displayMetrics).toInt()
+    }
     /**
      * 获取屏幕的宽 单位px
 
@@ -386,7 +413,7 @@ object UIUtils {
             text = ""
         badge.text = text
         badge.badgePosition = BadgeView.POSITION_TOP_RIGHT
-        badge.badgeMargin = UIUtils.dip2px(5)
+        badge.badgeMargin = UIUtils.dip2px(5f)
         return badge
     }
 

@@ -7,7 +7,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "game.shenle.com"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -25,7 +25,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '26.0.3'
     dexOptions {
         preDexLibraries = false
         javaMaxHeapSize "4g"
@@ -51,10 +51,10 @@ dependencies {
     // if you use the support libraries
     kapt 'com.google.dagger:dagger-android-processor:2.13'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.13'
-    api 'android.arch.lifecycle:runtime:1.0.3'
-    api 'android.arch.lifecycle:extensions:1.0.0'
-    kapt "android.arch.lifecycle:compiler:1.0.0"
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
+    api 'android.arch.lifecycle:runtime:1.1.0'
+    api 'android.arch.lifecycle:extensions:1.1.0'
+    kapt "android.arch.lifecycle:compiler:1.1.0"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
     api 'android.arch.persistence.room:runtime:1.0.0'
     kapt "android.arch.persistence.room:compiler:1.0.0"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
@@ -68,6 +68,8 @@ dependencies {
     // skin-support-constraint-layout ConstraintLayout 控件支持[可选]
     api 'com.android.support:appcompat-v7:26.+'
     api 'com.github.anzaizai:EasySwipeMenuLayout:1.1.2'
+    //沉浸式状态栏
+    api 'com.zhangmonke:ImmerseLayout:1.1.1'
     implementation project(':leshenlib')
 }
 kapt {

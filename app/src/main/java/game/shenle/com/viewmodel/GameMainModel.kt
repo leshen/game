@@ -8,6 +8,9 @@ import javax.inject.Inject
 class GameMainModel : BaseViewModel {
     @Inject
     constructor():super()
+    fun init(){
+
+    }
 }
 
 
