@@ -29,10 +29,10 @@ class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
         }
     }
 
-    private val listData = arrayListOf("新建游戏","单人旅程","双人旅程","龙套体验","上帝视角旁观","关于我们","上帝视角管理")
+    private val listData = arrayListOf("新建游戏","单人旅程","双人旅程","龙套体验","上帝视角旁观","关于我们","上帝视角管理","阅读")
     override fun initView() {
         setContentView(R.layout.activity_new_game_begin)
-        viewModel.init(UUID.randomUUID().toString())
+        viewModel.init("w9rxDDDi")
         initRecyleView(listData)
         checkProgress()
     }
@@ -61,7 +61,11 @@ class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
                     "龙套体验"->{UIUtils.showToastSafe("紧张研发中...")}
                     "上帝视角旁观"->{UIUtils.showToastSafe("紧张研发中...")}
                     "关于我们"->{UIUtils.showToastSafe("紧张研发中...")}
-                    "上帝视角管理"->{UIUtils.showToastSafe("紧张研发中...")}
+                    "上帝视角管理"->{MyJbListActivity.goHere()}
+                    "阅读"->{
+//                        ReadBookActivity.goHere()
+                        UIUtils.showToastSafe("紧张研发中...")
+                    }
                 }
         }
     }
@@ -73,7 +77,7 @@ class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
         viewModel.getUser()?.observe(this, Observer<Resource<UserTable>> {
             if (it?.status == Status.SUCCESS) {
                 this.user = it
-                val userName = it?.data?.userName
+                val userName = it?.data?.username
                 if (userName.isNullOrEmpty()) {
                     //新游戏
                     if (listData.contains("继续游戏")) {

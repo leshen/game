@@ -20,14 +20,22 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import game.shenle.com.db.Converters
+import game.shenle.com.db.table.*
 
 /**
  * @Database 指定操作，将 Dao 层全部集中在一起，可以指定 version 使用 entities 指定所用的 entity(table)
  * @TypeConverters 指定转换器，看要加在什么上面
  */
-@Database(entities = arrayOf(UserTable::class,JbTable::class), version = 1)
+@Database(entities = arrayOf(UserTable::class,JbTable::class, BookContentBean::class, BookInfoBean::class
+, BookShelfBean::class, ChapterListBean::class,GameUserDataTable::class,JbContentTable::class), version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun jbDao(): JbDao
+    abstract fun bookContentBeanDao(): BookContentBeanDao
+    abstract fun bookInfoBeanDao(): BookInfoBeanDao
+    abstract fun bookShelfBeanDao(): BookShelfBeanDao
+    abstract fun chapterListBeanDao(): ChapterListBeanDao
+    abstract fun gameUserDao(): GameUserDao
+    abstract fun jbContentDao(): JbContentDao
 }

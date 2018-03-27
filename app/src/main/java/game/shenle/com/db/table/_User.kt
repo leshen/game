@@ -17,32 +17,26 @@
 package com.example.android.observability.persistence
 
 import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.PrimaryKey
 import cn.bmob.v3.BmobObject
+import cn.bmob.v3.datatype.BmobDate
 import com.google.gson.Gson
 import game.shenle.com.utils.BaseParse
-import org.json.JSONObject
 import java.util.*
 
-class UserHttp private constructor(
-
-        @ColumnInfo(name = "u_create_date")
-        var createDate: Date? = null,
+class _User private constructor(
 
         @ColumnInfo(name = "jb_id")//剧本编号
         var jbId: String? = null,
 
-        @ColumnInfo(name = "u_name")
-        var userName: String? = null,
-
         @ColumnInfo(name = "u_phone")
-        var userPhone: String? = null,
-
+        var mobliePhoneNumber: String? = null,
+        @ColumnInfo(name = "u_name")
+        var username: String? = null,
         @ColumnInfo(name = "u_status")
         var status: Int? = 0)  : BmobObject() {
         companion object {
-            fun getInstance(table :UserTable):UserHttp{
-                    return BaseParse.parse(Gson().toJson(table).toString(),UserHttp::class.java)
+            fun getInstance(table :UserTable):_User{
+                    return BaseParse.parse(Gson().toJson(table).toString(),_User::class.java)
             }
         }
         fun toTable():UserTable{

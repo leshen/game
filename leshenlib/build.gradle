@@ -4,7 +4,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 26
@@ -30,7 +30,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.3'
     dexOptions {
         preDexLibraries = false
         javaMaxHeapSize "4g"
@@ -43,8 +43,8 @@ dependencies {
     // 此处以JCore 1.1.6 版本为例。
     //    api 'com.aitangba:swipeback:1.0.1'
     //rxandroid2
-    api 'android.arch.persistence.room:rxjava2:1.0.0'
-    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //    api 'android.arch.persistence.room:rxjava2:1.0.0'
+    //    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
     api 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     api 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -56,10 +56,10 @@ dependencies {
     // if you use the support libraries
     kapt 'com.google.dagger:dagger-android-processor:2.13'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.13'
-    api 'android.arch.lifecycle:runtime:1.0.3'
-    api 'android.arch.lifecycle:extensions:1.0.0'
-    kapt "android.arch.lifecycle:compiler:1.0.0"
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
+    api 'android.arch.lifecycle:runtime:1.1.0'
+    api 'android.arch.lifecycle:extensions:1.1.0'
+    kapt "android.arch.lifecycle:compiler:1.1.0"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
     api 'android.arch.persistence.room:runtime:1.0.0'
     kapt "android.arch.persistence.room:compiler:1.0.0"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
@@ -70,9 +70,15 @@ dependencies {
     api 'jp.wasabeef:glide-transformations:2.0.2'
     // If you want to use the GPU Filters
     api 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
-    api 'com.android.support:multidex:1.0.2'
+    api 'com.android.support:multidex:1.0.3'
     api 'com.android.support:recyclerview-v7:26.1.0'
-//    api 'net.sf.json-lib:json-lib:2.4:jdk15'
+    api 'com.android.support:appcompat-v7:26.1.0'
+    api 'com.qmuiteam:qmui:1.0.6'
+    //    api 'net.sf.json-lib:json-lib:2.4:jdk15'
+    //Retrofit
+    //    api 'com.squareup.retrofit2:retrofit:2.3.0'
+    //    api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    //    api 'com.squareup.retrofit2:converter-scalars:2.3.0'
 }
 kapt {
     generateStubs = true

@@ -22,19 +22,21 @@ import com.google.gson.Gson
 import game.shenle.com.utils.BaseParse
 
 data class JbHttp constructor(
-        @ColumnInfo(name = "jb_title")//剧本名称
+        //剧本名称
         var jbTitle: String = "",
 
-        @ColumnInfo(name = "jb_content")//剧本简介
+       //剧本简介
         var jbContent: String = "",
 
-        @ColumnInfo(name = "jb_auth")//作者
+        //作者
         var userName: String? = null,
 
-        @ColumnInfo(name = "jb_auth_phone")//作者电话
+        //作者电话
         var jbAuthPhone: String? = null,
 
-        @ColumnInfo(name = "jb_status")//剧本完成状态 0未完成 1完成
+       //作者id
+        var userId: String? = null,
+       //剧本完成状态 0未完成 1完成
         var jbStatus: Int? = 0)  : BmobObject(){
         companion object {
                 fun getInstance(table :JbTable):JbHttp{

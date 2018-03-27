@@ -25,6 +25,7 @@ import cn.bmob.v3.exception.BmobException
 import java.util.Objects
 
 import game.shenle.com.dragger.AppExecutors
+import lib.shenle.com.utils.LogUtils
 import lib.shenle.com.utils.UIUtils
 
 /**
@@ -37,7 +38,7 @@ import lib.shenle.com.utils.UIUtils
  * @param <RequestType>
 </RequestType></ResultType> */
 abstract class NetworkBoundResource<ResultType> @MainThread
-internal constructor(private val appExecutors: AppExecutors) {
+internal constructor(val appExecutors: AppExecutors) {
 
     private val result = MediatorLiveData<Resource<ResultType>>()
 
@@ -54,6 +55,8 @@ internal constructor(private val appExecutors: AppExecutors) {
             }
         }
     }
+
+    abstract fun saveTable()
 
     abstract fun fetchFromNetwork(dbSource: LiveData<ResultType>)
 
@@ -79,6 +82,7 @@ internal constructor(private val appExecutors: AppExecutors) {
     }
 
     fun onFetchFailed(exception: BmobException, dbSource: LiveData<ResultType>) {
+        LogUtils.e(exception.toString())
         result.removeSource(dbSource)
         result.addSource(dbSource
         ) { newData -> setValue(Resource.error(exception.message, newData)) }

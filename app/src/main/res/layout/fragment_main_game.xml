@@ -6,10 +6,17 @@
                 android:layout_height="match_parent"
                 android:background="@color/bg_green">
 
-    <TextView
-        android:id="@+id/button"
+    <game.shenle.com.view.MTextView
+        android:id="@+id/tv_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="主界面"
+        android:visibility="gone"
+    />
+    <game.shenle.com.view.contentswitchview.ContentSwitchView
+        android:id="@+id/tv_content"
+        android:layout_below="@+id/tv_test"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:text="主界面"/>
+        android:clickable="true" />
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.widget.TextView;
 
 /**
  * Created by ZQH on 2017/4/10.

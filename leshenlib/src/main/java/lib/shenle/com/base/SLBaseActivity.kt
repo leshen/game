@@ -1,10 +1,14 @@
 package lib.shenle.com.base
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
+import android.os.PersistableBundle
 import android.support.v4.app.Fragment
 import android.view.MotionEvent
 import android.view.View
@@ -28,6 +32,16 @@ abstract class SLBaseActivity : RxAppCompatActivity(), SwipeBackHelper.SlideBack
     fun onBack(view: View) {
         onBackPressed()
     }
+
+    private var startShareAnim: Boolean = false
+
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+        if (intent != null) {
+            startShareAnim = intent.getBooleanExtra(start_share_ele, false)
+        }
+    }
+    @JvmField val start_share_ele = "start_with_share_ele"
     @Inject
     @JvmField var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>?=null
 
@@ -118,5 +132,33 @@ abstract class SLBaseActivity : RxAppCompatActivity(), SwipeBackHelper.SlideBack
         }
         super.finish()
     }
+    ////////////////////////////////启动Activity转场动画/////////////////////////////////////////////
 
+    fun startActivityForResultByAnim(intent: Intent, requestCode: Int, animIn: Int, animExit: Int) {
+        startActivityForResult(intent, requestCode)
+        overridePendingTransition(animIn, animExit)
+    }
+
+    fun startActivityByAnim(intent: Intent, animIn: Int, animExit: Int) {
+        startActivity(intent)
+        overridePendingTransition(animIn, animExit)
+    }
+
+    @SuppressLint("RestrictedApi")
+    fun startActivityForResultByAnim(intent: Intent, requestCode: Int, view: View, transitionName: String, animIn: Int, animExit: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startActivityForResult(intent, requestCode, ActivityOptions.makeSceneTransitionAnimation(this, view, transitionName).toBundle())
+        } else {
+            startActivityForResultByAnim(intent, requestCode, animIn, animExit)
+        }
+    }
+
+    fun startActivityByAnim(intent: Intent, view: View, transitionName: String, animIn: Int, animExit: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            intent.putExtra(start_share_ele, true)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this, view, transitionName).toBundle())
+        } else {
+            startActivityByAnim(intent, animIn, animExit)
+        }
+    }
 }

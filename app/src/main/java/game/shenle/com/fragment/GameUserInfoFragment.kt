@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import game.shenle.com.BaseFragment
 import game.shenle.com.R
 import game.shenle.com.viewmodel.GameControllerModel
-import game.shenle.com.viewmodel.GameUserInfoModel
+import game.shenle.com.viewmodel.GameMainModel
 import lib.shenle.com.base.SLBaseFragment
 
 /**
  * 控制器
  * Created by shenle on 2017/12/1.
  */
-class GameUserInfoFragment : BaseFragment<GameUserInfoModel>() {
-    override fun getTNameClass(): Class<GameUserInfoModel> {
-        return GameUserInfoModel::class.java
+class GameUserInfoFragment : BaseFragment<GameMainModel>() {
+    override fun getTNameClass(): Class<GameMainModel> {
+        return GameMainModel::class.java
     }
     companion object {
         fun getInstance(jbId :String?):GameUserInfoFragment{
@@ -32,7 +32,7 @@ class GameUserInfoFragment : BaseFragment<GameUserInfoModel>() {
     private object Instance{
         val gameUserInfoFragment  = GameUserInfoFragment()
     }
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun initView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_game_user_info,container,false)
         return view
     }

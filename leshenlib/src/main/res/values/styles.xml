@@ -12,12 +12,16 @@
         <item name="android:paddingRight">5dp</item>
         <item name="android:scaleType">centerInside</item>
     </style>
-    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+    <!--<style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">-->
+    <style name="AppTheme.NoActionBar" parent="QMUI.Compat">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/bg_1</item>
         <item name="colorPrimaryDark">@color/bg_1_press</item>
         <item name="colorAccent">@color/bg_1</item>
         <item name="toolbarNavigationButtonStyle">@style/myToolbarNavigationButtonStyle</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
     <!--欢迎页面主题-->
     <style name="AppTheme.FullScreen" parent="AppTheme">

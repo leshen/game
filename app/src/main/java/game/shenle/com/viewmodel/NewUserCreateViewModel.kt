@@ -5,6 +5,7 @@ import com.example.android.observability.persistence.JbHttp
 import com.example.android.observability.persistence.JbTable
 import game.shenle.com.db.repository.JbRepository
 import game.shenle.com.db.repository.Resource
+import game.shenle.com.db.repository.UserRepository
 import javax.inject.Inject
 
 /**
@@ -13,6 +14,7 @@ import javax.inject.Inject
 class NewUserCreateViewModel : BaseViewModel {
     private var jbRepo: JbRepository
     private var jbList: LiveData<Resource<List<JbTable>>>? = null
+
     @Inject
     constructor(jbRepo: JbRepository):super(){
         this.jbRepo = jbRepo

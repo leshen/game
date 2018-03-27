@@ -21,20 +21,6 @@ class EditJbViewModel : BaseViewModel {
     fun submitJb(jbHttp: JbHttp):LiveData<Resource<JbTable>>{
         return jbRepo.submitJb(jbHttp)
     }
-
-    fun checkOk(tl_title: TextInputLayout, tl_jj: TextInputLayout):Boolean {
-        val title = tl_title.editText?.getText().toString()
-        val jj = tl_jj.editText?.getText().toString()
-        if(title.isNullOrEmpty()){
-            tl_title.error = "标题不能为空"
-            return false
-        }
-        if(jj.isNullOrEmpty()){
-            tl_jj.error = "简介不能为空"
-            return false
-        }
-        return true
-    }
 }
 
 

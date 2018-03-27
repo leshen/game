@@ -59,6 +59,8 @@ interface JbDao {
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertJb(user: JbTable)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertJb(user: List<JbTable>)
 
     /**
      * Delete jb.

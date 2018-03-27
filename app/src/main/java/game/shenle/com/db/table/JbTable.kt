@@ -44,6 +44,8 @@ data class JbTable constructor(
 
         @ColumnInfo(name = "jb_auth")//作者
         var userName: String? = null,
+        @ColumnInfo(name = "jb_auth_id")//作者id
+        var userId: String? = null,
 
         @ColumnInfo(name = "jb_auth_phone")//作者电话
         var jbAuthPhone: String? = null,

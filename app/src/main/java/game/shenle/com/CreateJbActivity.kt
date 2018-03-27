@@ -1,6 +1,7 @@
 package game.shenle.com
 
 import android.arch.lifecycle.Observer
+import android.support.design.widget.TextInputLayout
 import android.view.View
 import com.example.android.observability.persistence.JbHttp
 import game.shenle.com.db.repository.Status
@@ -17,7 +18,7 @@ class CreateJbActivity : BaseActivity<CreateJbViewModel>(), View.OnClickListener
         when(v){
             bt_submit->{
                 bt_submit.isEnabled = false
-                if(viewModel.checkOk(tl_title,tl_jj)){
+                if(checkOk()){
                     val jbHttp = JbHttp(tl_title.editText?.getText().toString(),tl_jj.editText?.getText().toString())
                     viewModel.submitJb(jbHttp).observe(this, Observer {
                         if (it?.status==Status.SUCCESS){
@@ -34,6 +35,19 @@ class CreateJbActivity : BaseActivity<CreateJbViewModel>(), View.OnClickListener
         }
     }
 
+    fun checkOk():Boolean {
+        val title = tl_title.editText?.getText().toString()
+        val jj = tl_jj.editText?.getText().toString()
+        if(title.isNullOrEmpty()){
+            tl_title.error = "标题不能为空"
+            return false
+        }
+        if(jj.isNullOrEmpty()){
+            tl_jj.error = "简介不能为空"
+            return false
+        }
+        return true
+    }
     override fun getTNameClass(): Class<CreateJbViewModel> {
         return CreateJbViewModel::class.java
     }

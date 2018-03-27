@@ -34,12 +34,17 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity android:name=".NewGameBeginActivity"/>
         <activity android:name=".GameActivity"/>
         <activity android:name=".NewUserCreateActivity"/>
         <activity android:name=".CreateJbActivity"/>
         <activity android:name=".EditJbActivity"/>
+        <activity android:name=".ReadBookActivity"/>
+        <activity android:name=".MyJbListActivity"/>
     </application>
 
 </manifest>

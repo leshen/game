@@ -3,6 +3,9 @@ package game.shenle.com
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import game.shenle.com.viewmodel.BaseViewModel
 import lib.shenle.com.base.SLBaseActivity
 import lib.shenle.com.base.SLBaseFragment
@@ -17,9 +20,13 @@ abstract class BaseFragment<T: BaseViewModel> : SLBaseFragment(), LifecycleOwner
     lateinit var viewModel: T
     @Inject
     @JvmField var viewModelFactory: SLViewModelFactory?=null
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this,viewModelFactory!!).get(getTNameClass())
+
+    abstract fun initView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View?
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        viewModel = ViewModelProviders.of(activity!!,viewModelFactory!!).get(getTNameClass())
+        return initView(inflater,container,savedInstanceState)
     }
+
     abstract fun getTNameClass(): Class<T>
 }

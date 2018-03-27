@@ -1,17 +1,8 @@
 package game.shenle.com.viewmodel
 
-import android.graphics.Typeface
 import cn.bmob.v3.Bmob
-import game.shenle.com.NewGameBeginActivity
-import game.shenle.com.R.id.tv_content
-import game.shenle.com.R.id.tv_init
-import game.shenle.com.view.OnPrintOverListener
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.*
+import game.shenle.com.db.repository.JbContentRepository
 import lib.shenle.com.utils.UIUtils
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -19,8 +10,10 @@ import javax.inject.Inject
  * Created by shenle on 2017/11/15.
  */
 class MainViewModel : BaseViewModel {
+
     @Inject
-    constructor():super()
+    constructor(jbContentRepository: JbContentRepository):super(){
+    }
 
     fun init() {
         initBob()

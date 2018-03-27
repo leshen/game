@@ -2,6 +2,7 @@ package game.shenle.com
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.support.design.widget.TextInputLayout
 import android.view.View
 import com.example.android.observability.persistence.JbHttp
 import game.shenle.com.db.repository.Status
@@ -18,7 +19,7 @@ class EditJbActivity : BaseActivity<EditJbViewModel>(), View.OnClickListener {
         when(v){
             bt_submit->{
                 bt_submit.isEnabled = false
-                if(viewModel.checkOk(tl_title,tl_jj)){
+                if(checkOk()){
                     val jbHttp = JbHttp(tl_title.editText?.getText().toString(),tl_jj.editText?.getText().toString())
                     viewModel.submitJb(jbHttp).observe(this, Observer {
                         if (it?.status==Status.SUCCESS){
@@ -35,12 +36,25 @@ class EditJbActivity : BaseActivity<EditJbViewModel>(), View.OnClickListener {
         }
     }
 
+    fun checkOk():Boolean {
+        val title = tl_title.editText?.getText().toString()
+        val jj = tl_jj.editText?.getText().toString()
+        if(title.isNullOrEmpty()){
+            tl_title.error = "标题不能为空"
+            return false
+        }
+        if(jj.isNullOrEmpty()){
+            tl_jj.error = "简介不能为空"
+            return false
+        }
+        return true
+    }
     override fun getTNameClass(): Class<EditJbViewModel> {
         return EditJbViewModel::class.java
     }
 
     companion object {
-        fun goHere(jbId:String) {
+        fun goHere(jbId:String?) {
             val bundle = Bundle()
             bundle.putString("jbId",jbId)
             UIUtils.startActivity(EditJbActivity::class.java,bundle)
@@ -51,5 +65,6 @@ class EditJbActivity : BaseActivity<EditJbViewModel>(), View.OnClickListener {
         setContentView(R.layout.activity_edit_jb)
         bt_submit.setOnClickListener(this)
     }
-
+    fun writeJb(){
+    }
 }

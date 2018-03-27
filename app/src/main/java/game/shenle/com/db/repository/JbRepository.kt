@@ -31,6 +31,10 @@ class JbRepository {
 
     fun getJb(jbId: String): LiveData<Resource<JbTable>> {
         return object : NetworkBoundResource<JbTable>(executor) {
+            override fun saveTable() {
+                jbDao.insertJb(JbTable())
+            }
+
             override fun fetchFromNetwork(dbSource: LiveData<JbTable>) {
                 val query = BmobQuery<JbHttp>()
                 query.getObject(jbId, object : QueryListener<JbHttp>() {
@@ -57,12 +61,16 @@ class JbRepository {
             }
         }.asLiveData()
     }
-    fun getJbList(page:Int): LiveData<Resource<List<JbTable>>> {
+    fun getJbList(page:Int,userId:String?=null,jbStatus:Int=0): LiveData<Resource<List<JbTable>>> {
         return object : NetworkBoundResource<List<JbTable>>(executor) {
+            override fun saveTable() {
+                jbDao.insertJb(JbTable())
+            }
             override fun fetchFromNetwork(dbSource: LiveData<List<JbTable>>) {
                 val query = BmobQuery<JbHttp>()
-//              //查询playerName叫“比目”的数据
-              query.addWhereNotEqualTo("jbStatus", 0)
+              query.addWhereNotEqualTo("jbStatus", jbStatus)
+                userId?.let {
+                    query.addWhereEqualTo("userId", userId) }
 //              返回50条数据，如果不加上这条语句，默认返回10条数据
                 query.setLimit(10)
                 query.setSkip(10*(page-1))
@@ -83,12 +91,7 @@ class JbRepository {
             }
 
             override fun saveCallResult(item: List<JbTable>) {
-                if (page==1) {
-                    jbDao.deleteAll()
-                }
-                for (i in item) {
-                    jbDao.insertJb(i)
-                }
+                    jbDao.insertJb(item)
             }
 
             override fun shouldFetch(data: List<JbTable>?): Boolean {
@@ -102,6 +105,9 @@ class JbRepository {
     }
     fun submitJb(jbHttp: JbHttp) :LiveData<Resource<JbTable>>{
         return object : NetworkBoundResource<JbTable>(executor) {
+            override fun saveTable() {
+            jbDao.insertJb(JbTable())
+        }
             override fun fetchFromNetwork(dbSource: LiveData<JbTable>) {
                 jbHttp.save(object : SaveListener<String>() {
                     override fun done(objectId: String?, e: BmobException?) {

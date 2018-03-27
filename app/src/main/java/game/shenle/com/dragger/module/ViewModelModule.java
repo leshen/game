@@ -15,8 +15,10 @@ import game.shenle.com.viewmodel.GameMainModel;
 import game.shenle.com.viewmodel.GameUserInfoModel;
 import game.shenle.com.viewmodel.GameViewModel;
 import game.shenle.com.viewmodel.MainViewModel;
+import game.shenle.com.viewmodel.MyJbListModel;
 import game.shenle.com.viewmodel.NewGameBeginViewModel;
 import game.shenle.com.viewmodel.NewUserCreateViewModel;
+import game.shenle.com.viewmodel.ReadBookViewModel;
 import lib.shenle.com.dagger2.SLViewModelFactory;
 import lib.shenle.com.dagger2.SLViewModelModule;
 import lib.shenle.com.dagger2.ViewModelKey;
@@ -67,4 +69,13 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(EditJbViewModel.class)
     abstract ViewModel bindEditJbViewModel(EditJbViewModel editJbViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ReadBookViewModel.class)
+    abstract ViewModel bindReadBookViewModel(ReadBookViewModel readBookViewModel);
+    @Binds
+    @IntoMap
+    @ViewModelKey(MyJbListModel.class)
+    abstract ViewModel bindMyJbListModel(MyJbListModel readBookViewModel);
 }

@@ -19,6 +19,12 @@ package game.shenle.com.dragger.module;
 import android.arch.persistence.room.Room;
 
 import com.example.android.observability.persistence.AppDatabase;
+import com.example.android.observability.persistence.BookContentBeanDao;
+import com.example.android.observability.persistence.BookInfoBeanDao;
+import com.example.android.observability.persistence.BookShelfBeanDao;
+import com.example.android.observability.persistence.ChapterListBeanDao;
+import com.example.android.observability.persistence.GameUserDao;
+import com.example.android.observability.persistence.JbContentDao;
 import com.example.android.observability.persistence.JbDao;
 import com.example.android.observability.persistence.UserDao;
 
@@ -45,6 +51,30 @@ public class AppModule{
     @Provides@Singleton
     public JbDao provideJbDao(AppDatabase db){
         return db.jbDao();
+    }
+    @Provides@Singleton
+    public JbContentDao provideJbContentDao(AppDatabase db){
+        return db.jbContentDao();
+    }
+    @Provides@Singleton
+    public GameUserDao provideGameUserDao(AppDatabase db){
+        return db.gameUserDao();
+    }
+    @Provides@Singleton
+    public BookContentBeanDao provideBookContentBeanDao(AppDatabase db){
+        return db.bookContentBeanDao();
+    }
+    @Provides@Singleton
+    public BookInfoBeanDao provideBookInfoBeanDao(AppDatabase db){
+        return db.bookInfoBeanDao();
+    }
+    @Provides@Singleton
+    public BookShelfBeanDao provideBookShelfBeanDao(AppDatabase db){
+        return db.bookShelfBeanDao();
+    }
+    @Provides@Singleton
+    public ChapterListBeanDao provideChapterListBeanDao(AppDatabase db){
+        return db.chapterListBeanDao();
     }
 
     @Singleton@Provides

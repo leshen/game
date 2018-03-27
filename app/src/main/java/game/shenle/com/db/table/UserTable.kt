@@ -19,7 +19,6 @@ package com.example.android.observability.persistence
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import java.util.*
 
 @Entity(tableName = "users")
 data class UserTable constructor(
@@ -27,20 +26,19 @@ data class UserTable constructor(
         @ColumnInfo(name = "u_id")
         var objectId: String = "",
 
-        @ColumnInfo(name = "u_create_date")//创建时间
+        @ColumnInfo(name = "u_create_date")
         var createdAt: String? = null,
-
         @ColumnInfo(name = "u_update_date")//更新时间
-        var updatedAt: String? = null,
+        var updatedAt: 	String? = null,
 
         @ColumnInfo(name = "jb_id")//剧本编号
         var jbId: String? = null,
 
         @ColumnInfo(name = "u_name")
-        var userName: String? = null,
+        var username: String? = null,
 
         @ColumnInfo(name = "u_phone")
-        var userPhone: String? = null,
+        var mobliePhoneNumber: String? = null,
 
         @ColumnInfo(name = "u_status")
         var status: Int? = 0) {

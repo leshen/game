@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts  xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="a"
+        android:enabled="true"
+        android:icon="@mipmap/icon_download"
+        android:shortcutShortLabel="@string/compose_shortcut_short_a"
+        android:shortcutLongLabel="@string/compose_shortcut_long_a"
+        android:shortcutDisabledMessage="@string/compose_shortcut_disabled_a">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="game.shenle.com"
+            android:targetClass="game.shenle.com.MyJbListActivity" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+
+</shortcuts >
