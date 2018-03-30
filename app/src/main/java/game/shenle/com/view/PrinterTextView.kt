@@ -1,6 +1,9 @@
 package game.shenle.com.view
 
 import android.content.Context
+import android.graphics.Canvas
+import android.text.Layout
+import android.text.StaticLayout
 import android.util.AttributeSet
 
 import java.util.Timer
@@ -34,7 +37,7 @@ class PrinterTextView : SkinCompatTextView {
      */
     private var intervalTime = DEFAULT_TIME_DELAY
     /**
-     * 间隔时间
+     * 间隔字符
      */
     private var intervalChar = DEFAULT_INTERVAL_CHAR
     /**
@@ -69,7 +72,7 @@ class PrinterTextView : SkinCompatTextView {
     /**
      * 开始打字
      */
-    fun startPrint(listener: OnPrintOverListener) {
+    fun startPrint(listener: OnPrintListener?) {
         this.listener = listener
         // 判空处理
         if (strIsEmpty(mPrintStr)) {
@@ -82,12 +85,22 @@ class PrinterTextView : SkinCompatTextView {
         // 重置相关信息
         text = ""
         stopPrint()
+        listener?.start(mPrintStr!!)
         printProgress = 0
         mTimer = Timer()
         mTimer!!.schedule(PrinterTimeTask(), intervalTime.toLong(), intervalTime.toLong())
     }
 
-    private var listener: OnPrintOverListener?=null
+    fun restartTimer() {
+        if (mTimer != null) {
+            mTimer!!.cancel();
+
+        }
+        mTimer = Timer()
+        mTimer!!.schedule(PrinterTimeTask(), intervalTime.toLong(), intervalTime.toLong())
+    }
+
+    private var listener: OnPrintListener? = null
 
     /**
      * 停止打字
@@ -96,6 +109,15 @@ class PrinterTextView : SkinCompatTextView {
         if (null != mTimer) {
             mTimer!!.cancel()
             mTimer = null
+        }
+    }
+
+    /**
+     * 暂停打字
+     */
+    fun pausePrint() {
+        if (null != mTimer) {
+            mTimer!!.cancel()
         }
     }
 
@@ -113,6 +135,13 @@ class PrinterTextView : SkinCompatTextView {
         }
     }
 
+//    override fun onDraw(canvas: Canvas) {
+//        val paint = paint
+//        paint.color = textColors.defaultColor
+//        val layout = StaticLayout(text, paint, canvas.width, Layout.Alignment.ALIGN_NORMAL, lineSpacingMultiplier, lineSpacingExtra, false)
+//        layout.draw(canvas)
+//    }
+
     /**
      * 打字计时器任务
      */
@@ -126,6 +155,7 @@ class PrinterTextView : SkinCompatTextView {
                     printProgress++
                     // (printProgress & 1) == 1 等价于printProgress%2!=0
                     text = mPrintStr!!.substring(0, printProgress) + if (printProgress and 1 == 1) intervalChar else ""
+                    listener?.printing(printProgress)
                 } else {
                     // 如果完成打字,显示完整文字
                     text = mPrintStr
@@ -144,6 +174,8 @@ class PrinterTextView : SkinCompatTextView {
     }
 }
 
-interface OnPrintOverListener {
+interface OnPrintListener {
     fun over()
+    fun start(mPrintStr: String)
+    fun printing(process: Int)
 }

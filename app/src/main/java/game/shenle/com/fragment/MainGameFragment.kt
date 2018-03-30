@@ -43,7 +43,7 @@ class MainGameFragment : BaseFragment<GameMainModel>() {
         val controllerFragment = MainGameFragment()
     }
 
-    private var zjInput: LiveData<JbContentTable>?=null
+    private var zjInput: LiveData<JbContentTable>? = null
 
     override fun initView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_main_game, container, false)
@@ -55,37 +55,35 @@ class MainGameFragment : BaseFragment<GameMainModel>() {
         viewModel.getZjInput()?.observe(activity as LifecycleOwner, Observer {
             view?.tv_content?.setLoadDataListener(object : ContentSwitchView.LoadDataListener {
                 override fun loaddata(bookContentView: BookContentView, qtag: Long, chapterIndex: Int, pageIndex: Int) {
-                viewModel.loadContent(bookContentView, qtag, chapterIndex, pageIndex)
+                    viewModel.loadContent(bookContentView, qtag, chapterIndex, pageIndex)
                     //            view?.tv_content?.text = it
-                    it?.let {
-                        val tempCount = Math.ceil((it.bg?.lines().size
-                                ?: 0) * 1.0 / pageLineCount).toInt() - 1
-                        var pageIndex = pageIndex
-                        if (pageIndex == BookContentView.DURPAGEINDEXBEGIN) {
-                            pageIndex = 0
-                        } else if (pageIndex == BookContentView.DURPAGEINDEXEND) {
-                            pageIndex = tempCount
-                        } else {
-                            if (pageIndex >= tempCount) {
-                                pageIndex = tempCount
-                            }
-                        }
-                        val start = pageIndex * pageLineCount
-                        val end = if (pageIndex == tempCount) it.bg.length
-                                ?: 0 else start + pageLineCount
-                        if (bookContentView != null && qtag == bookContentView!!.getqTag()) {
-                            bookContentView.updateData(qtag, it.jbTitle, it?.bg?.toList().map { it.toString() }.subList(start, end), it.totalZj, chapterIndex, pageIndex, tempCount + 1)
-                        }
-                    }
+//                    it?.let {
+//                        val tempCount = Math.ceil((it.bg?.lines().size
+//                                ?: 0) * 1.0 / pageLineCount).toInt() - 1
+//                        var pageIndex = pageIndex
+//                        if (pageIndex == BookContentView.DURPAGEINDEXBEGIN) {
+//                            pageIndex = 0
+//                        } else if (pageIndex == BookContentView.DURPAGEINDEXEND) {
+//                            pageIndex = tempCount
+//                        } else {
+//                            if (pageIndex >= tempCount) {
+//                                pageIndex = tempCount
+//                            }
+//                        }
+//                        val start = pageIndex * pageLineCount
+//                        val end = if (pageIndex == tempCount) it.bg.length
+//                                ?: 0 else start + pageLineCount
+//                        if (bookContentView != null && qtag == bookContentView!!.getqTag()) {
+//                            bookContentView.updateData(qtag, it.jbTitle, it?.bg?.toList().map { it.toString() }.subList(start, end), it.totalZj, chapterIndex, pageIndex, tempCount + 1)
+//                        }
+//                    }
                 }
-
-                var pageLineCount = 0
                 override fun updateProgress(chapterIndex: Int, pageIndex: Int) {
-                    it?.let {
-                        it.zj_index = chapterIndex
-                        it.zj_self_index = pageIndex
-                    }
-//                viewModel.updateProgress(chapterIndex, pageIndex)
+//                    it?.let {
+//                        it.zj_index = chapterIndex
+//                        it.zj_self_index = pageIndex
+//                    }
+                    viewModel.updateProgress(chapterIndex, pageIndex)
 //
 //                if (viewModel.getBookShelf()!!.getBookInfoBean().getChapterlist()!!.size > 0)
 //                    atv_title!!.setText(viewModel.getBookShelf()!!.getBookInfoBean().getChapterlist()!!.get(viewModel.getBookShelf()!!.getDurChapter()).getDurChapterName())
@@ -96,16 +94,14 @@ class MainGameFragment : BaseFragment<GameMainModel>() {
                 }
 
                 override fun getChapterTitle(chapterIndex: Int): String {
-//                return viewModel.getChapterTitle(chapterIndex)
-                    return "ddd"
+                    return viewModel.getChapterTitle(chapterIndex)
                 }
 
                 override fun initData(lineCount: Int) {
-                    this.pageLineCount = lineCount
+                    viewModel.setPageLineCount(lineCount)
                     it?.let {
-                    view?.tv_content?.setInitData(it.zj_index, it.totalZj, it.zj_self_index)
+                        view?.tv_content?.setInitData(it.zj_index, it.totalZj, it.zj_self_index)
                     }
-                    //                viewModel.setPageLineCount(lineCount)
 //                viewModel.initContent()
                 }
 

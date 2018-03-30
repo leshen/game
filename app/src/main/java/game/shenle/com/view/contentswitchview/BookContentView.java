@@ -15,7 +15,8 @@ import java.util.List;
 
 import game.shenle.com.R;
 import game.shenle.com.persistence.ReadBookControl;
-import game.shenle.com.view.MTextView;
+import game.shenle.com.view.OnPrintListener;
+import game.shenle.com.view.PrinterTextView;
 
 public class BookContentView extends FrameLayout {
     public long qTag = System.currentTimeMillis();
@@ -27,7 +28,7 @@ public class BookContentView extends FrameLayout {
     private ImageView ivBg;
     private TextView tvTitle;
     private LinearLayout llContent;
-    private MTextView tvContent;
+    private PrinterTextView tvContent;
     private View vBottom;
     private TextView tvPage;
 
@@ -46,6 +47,13 @@ public class BookContentView extends FrameLayout {
     private ContentSwitchView.LoadDataListener loadDataListener;
 
     private SetDataListener setDataListener;
+
+    public void pausePrint() {
+        tvContent.pausePrint();
+    }
+    public void restartPrint() {
+        tvContent.restartTimer();
+    }
 
     public interface SetDataListener {
         public void setDataFinish(BookContentView bookContentView, int durChapterIndex, int chapterAll, int durPageIndex, int pageAll, int fromPageIndex);
@@ -76,7 +84,7 @@ public class BookContentView extends FrameLayout {
         ivBg = (ImageView) view.findViewById(R.id.iv_bg);
         tvTitle = (TextView) view.findViewById(R.id.tv_title);
         llContent = (LinearLayout) view.findViewById(R.id.ll_content);
-        tvContent = (MTextView) view.findViewById(R.id.tv_content);
+        tvContent = (PrinterTextView) view.findViewById(R.id.tv_content);
         vBottom = view.findViewById(R.id.v_bottom);
         tvPage = (TextView) view.findViewById(R.id.tv_page);
 
@@ -141,6 +149,35 @@ public class BookContentView extends FrameLayout {
 
             tvTitle.setText(this.title);
             tvContent.setText(this.content);
+            tvPage.setText((this.durPageIndex + 1) + "/" + this.pageAll);
+
+            finishLoading();
+        }
+    }
+
+    public void updateDataForPrint(long tag, String title, List<String> contentLines, int durChapterIndex, int chapterAll, int durPageIndex, int durPageAll, OnPrintListener printListener) {
+        if (tag == qTag) {
+            if (setDataListener != null) {
+                setDataListener.setDataFinish(this, durChapterIndex, chapterAll, durPageIndex, durPageAll, this.durPageIndex);
+            }
+            if (contentLines == null) {
+                this.content = "";
+            } else {
+                StringBuilder s = new StringBuilder();
+                for (int i = 0; i < contentLines.size(); i++) {
+                    s.append(contentLines.get(i));
+                }
+                this.content = s.toString();
+            }
+            this.title = title;
+            this.durChapterIndex = durChapterIndex;
+            this.chapterAll = chapterAll;
+            this.durPageIndex = durPageIndex;
+            this.pageAll = durPageAll;
+
+            tvTitle.setText(this.title);
+            tvContent.setPrintText(this.content);
+            tvContent.startPrint(printListener);
             tvPage.setText((this.durPageIndex + 1) + "/" + this.pageAll);
 
             finishLoading();

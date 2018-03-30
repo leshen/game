@@ -4,18 +4,11 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/bg_green">
+                android:background="@color/bg_green"
+                tools:context="game.shenle.com.GameActivity">
 
-    <game.shenle.com.view.MTextView
-        android:id="@+id/tv_test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="主界面"
-        android:visibility="gone"
-    />
     <game.shenle.com.view.contentswitchview.ContentSwitchView
         android:id="@+id/tv_content"
-        android:layout_below="@+id/tv_test"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true" />

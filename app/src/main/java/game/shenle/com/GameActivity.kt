@@ -5,7 +5,6 @@ import android.os.Bundle
 import game.shenle.com.fragment.ControllerFragment
 import game.shenle.com.fragment.GameUserInfoFragment
 import game.shenle.com.fragment.MainGameFragment
-import game.shenle.com.view.OnPrintOverListener
 import game.shenle.com.viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.activity_game.*
 import lib.shenle.com.utils.UIUtils
