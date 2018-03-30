@@ -110,6 +110,7 @@ class GameMainModel : BaseViewModel {
     fun getZjInput(): LiveData<JbContentTable>? {
         return zjContent
     }
+
     //控制器
     fun getZlStr(): LiveData<String>? {
         return zlStr
@@ -120,7 +121,10 @@ class GameMainModel : BaseViewModel {
         jbContentRepository.upDataTable(zjContent?.value)
     }
 
+    private var bookContentView: BookContentView? = null
+
     fun loadContent(bookContentView: BookContentView, qtag: Long, chapterIndex: Int, pageIndex: Int) {
+        this.bookContentView = bookContentView
         zjContent?.value?.let {
             val tempCount = Math.ceil((it.bg?.lines().size
                     ?: 0) * 1.0 / pageLineCount).toInt() - 1
@@ -172,7 +176,8 @@ class GameMainModel : BaseViewModel {
 
     //执行指令
     fun doZl(zl: String?) {
-        current_zl_process
+        //TODO 触发指令
+        bookContentView?.restartPrint()
 
     }
 

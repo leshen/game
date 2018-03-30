@@ -38,7 +38,7 @@ data class JbContentTable constructor(
         //当前章节位置   用页码
         var zj_self_index: Int = BookContentView.DURPAGEINDEXBEGIN,
         @ColumnInfo//背景
-        var bg: String = "那个啥,你穿越到了原始社会,努力活下去吧,你现在的初始数据是:[*初始化数据*]",
+        var bg: String = "",
 
         @ColumnInfo//背景
         var bg2: String = "",
