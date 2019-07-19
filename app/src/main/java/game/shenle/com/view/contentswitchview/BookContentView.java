@@ -51,8 +51,8 @@ public class BookContentView extends FrameLayout {
     public void pausePrint() {
         tvContent.pausePrint();
     }
-    public void restartPrint() {
-        tvContent.restartTimer();
+    public void restartPrint(int printProgress) {
+        tvContent.restartTimer(printProgress);
     }
 
     public interface SetDataListener {

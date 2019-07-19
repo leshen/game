@@ -66,6 +66,9 @@ class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
 //                        ReadBookActivity.goHere()
                         UIUtils.showToastSafe("紧张研发中...")
                     }
+                    "扩展"->{
+                        OtherActivity.goHere()
+                    }
                 }
         }
     }

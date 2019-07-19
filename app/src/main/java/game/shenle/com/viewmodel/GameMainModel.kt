@@ -11,6 +11,9 @@ import game.shenle.com.db.repository.Status
 import game.shenle.com.view.OnPrintListener
 import game.shenle.com.view.contentswitchview.BookContentView
 import java.util.regex.Pattern
+import android.arch.lifecycle.MutableLiveData
+import lib.shenle.com.utils.UIUtils
+import java.util.*
 
 
 /**
@@ -35,80 +38,65 @@ class GameMainModel : BaseViewModel {
 
     private var jbContentList: List<JbContentTable>? = null
 
-    private val zl_list = HashMap<Int, String>()
+    private var zl_list = HashMap<Int, String>()
+    private var state = MediatorLiveData<String>()//状态更改
 
     fun init(jbId: String) {
         this.jbId = jbId
-        zjContent = Transformations.switchMap(jbContentRepository.getJbContent(jbId, 1L, 10L), {
-            if (it?.status == Status.SUCCESS && it?.data != null && it?.data.size != 0) {
-                jbContentList = it?.data
-                var str_copy = jbContentList!![0].bg
-                val jbContentTable = jbContentList!![0]
-                zjContent = Transformations.map(gameUserRepository.getGameUserContent("w9rxDDDi", jbId), {
-                    if (it.status == Status.SUCCESS) {
-                        jbContentTable.bg = str_copy.replace("[*初始化数据*]", it.data.toString()).replace("[*用户名*]", it.data?.gameUserName!!)
-                        var str = jbContentTable.bg
-                        val pz = "\\[\\*(.+?)\\*\\]"
-                        val compile = Pattern.compile(pz)
-                        val matcher = compile.matcher(str)
-                        var i = 0
-                        zl_list.clear()
-                        while (matcher.find()) {
-                            val group = matcher.group()
-                            if (group.contains("[*指令_")) {
-                                str.replace(group, "\n$group\n")
-                                i = str.indexOf(group, i)
-                                zl_list.put(i, group)
+        zjContent = Transformations.switchMap(zl_do, { zl ->
+            Transformations.switchMap(jbContentRepository.getJbContent(jbId, 1L, 10L), {
+                if (it?.status == Status.SUCCESS && it?.data != null && it?.data.size != 0) {
+                    jbContentList = it?.data
+                    var str_copy = jbContentList!![0].bg
+                    val jbContentTable = jbContentList!![0]
+                    zjContent = Transformations.map(gameUserRepository.getGameUserContent("w9rxDDDi", jbId), {
+                        if (it.status == Status.SUCCESS) {
+                            str_copy = str_copy.replace("[*初始化数据*]", it.data.toString()).replace("[*用户名*]", it.data?.gameUserName!!)
+                            if (zl_list.containsKey(current_zl_process))
+                                str_copy = str_copy.replaceFirst(zl_list.get(current_zl_process)!!, zl)!!
+                            jbContentTable.bg = str_copy
+                            var str = jbContentTable.bg
+                            val pz = "\\[\\*(.+?)\\*\\]"
+                            val compile = Pattern.compile(pz)
+                            val matcher = compile.matcher(str)
+                            var i = 0
+                            var zl_list_copy = HashMap<Int,String>()
+                            while (matcher.find()) {
+                                val group = matcher.group()
+                                if (group.contains("[*指令_")) {
+                                    if (!zl_list.containsValue(group))
+                                    str = str.replace(group, "\n$group\n")
+                                    i = str.indexOf(group, i)
+                                    zl_list_copy.put(i, group)
+                                }
                             }
+                            zl_list.clear()
+                            zl_list = zl_list_copy
+                            jbContentTable.bg = str
+                            if (!UIUtils.isEmpty(zl)) {
+                                bookContentView?.restartPrint(current_zl_process)
+                            }else{
+                                state.postValue("开始")
+                            }
+                            jbContentTable
+                        } else {
+                            null
                         }
-                        jbContentTable.bg = str
-                        jbContentTable
-                    } else {
-                        null
-                    }
-                })
-//                    var str = it?.data!![0].bg
-//                    var str_copy = str
-//                    val pz = "\\[\\*(.+?)\\*\\]"
-//                    val compile = Pattern.compile(pz)
-//                    val matcher = compile.matcher(str_copy)
-//                    val jbContentTable = it?.data[0]
-////                    (zjContent as MediatorLiveData).postValue(jbContentTable)
-//                    while (matcher.find()) {
-//                        val group = matcher.group()
-//                        when (group) {
-//                            "[*初始化数据*]" -> {
-//                                zjContent = Transformations.map(gameUserRepository.getGameUserContent("w9rxDDDi", jbId), {
-//                                    if (it.status == Status.SUCCESS) {
-//                                        jbContentTable.bg = str_copy.replace("[*初始化数据*]", it.data.toString()).replace("[*用户名*]", it.data?.gameUserName!!)
-//                                        jbContentTable
-//                                    } else {
-//                                        jbContentTable
-//                                    }
-//                                })
-//                            }
-////                            "[*指令_方向*]" -> {jbContentTable.bg = str_copy.replace("[*用户名*]", it.data.)}
-//                            else -> {
-//                            }
-//
-//                        }
-//                    }
-//                    jbContentTable
-////                    zjContent
-//                } else {
-////                    zjContent?.value
-//                    null
-//                }
-                zjContent
-            } else {
-//                zjContent?.value
-                null
-            }
+                    })
+                    zjContent
+                } else {
+                    null
+                }
+            })
+
         })
     }
 
     fun getZjInput(): LiveData<JbContentTable>? {
         return zjContent
+    }
+    fun getState(): LiveData<String>? {
+        return state
     }
 
     //控制器
@@ -162,7 +150,7 @@ class GameMainModel : BaseViewModel {
                     }
 
                     override fun printing(process: Int) {
-                        if (zl_list.contains(process)) {
+                        if (zl_list.containsKey(process)) {
                             //触发指令
                             bookContentView.pausePrint()
                             current_zl_process = process
@@ -174,10 +162,12 @@ class GameMainModel : BaseViewModel {
         }
     }
 
+    private val zl_do = MutableLiveData<String>()
     //执行指令
-    fun doZl(zl: String?) {
+    fun doZl(zl: String?="") {
         //TODO 触发指令
-        bookContentView?.restartPrint()
+        zl_do.postValue(zl)
+//        bookContentView?.restartPrint()
 
     }
 

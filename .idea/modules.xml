@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/game.iml" filepath="$PROJECT_DIR$/game.iml" />
       <module fileurl="file://$PROJECT_DIR$/leshenlib/leshenlib.iml" filepath="$PROJECT_DIR$/leshenlib/leshenlib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jbox2d/myapplication.iml" filepath="$PROJECT_DIR$/jbox2d/myapplication.iml" />
     </modules>
   </component>
 </project>

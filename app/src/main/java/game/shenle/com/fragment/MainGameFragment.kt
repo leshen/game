@@ -43,48 +43,17 @@ class MainGameFragment : BaseFragment<GameMainModel>() {
         val controllerFragment = MainGameFragment()
     }
 
-    private var zjInput: LiveData<JbContentTable>? = null
 
     override fun initView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater?.inflate(R.layout.fragment_main_game, container, false)
         viewModel.init(arguments!!.getString("jbId"))
-//        viewModel.getStrLive()?.observe(activity as LifecycleOwner, Observer {
-//            view?.tv_test?.visibility = View.VISIBLE
-//            view?.tv_test?.text = it
-//        })
         viewModel.getZjInput()?.observe(activity as LifecycleOwner, Observer {
             view?.tv_content?.setLoadDataListener(object : ContentSwitchView.LoadDataListener {
                 override fun loaddata(bookContentView: BookContentView, qtag: Long, chapterIndex: Int, pageIndex: Int) {
                     viewModel.loadContent(bookContentView, qtag, chapterIndex, pageIndex)
-                    //            view?.tv_content?.text = it
-//                    it?.let {
-//                        val tempCount = Math.ceil((it.bg?.lines().size
-//                                ?: 0) * 1.0 / pageLineCount).toInt() - 1
-//                        var pageIndex = pageIndex
-//                        if (pageIndex == BookContentView.DURPAGEINDEXBEGIN) {
-//                            pageIndex = 0
-//                        } else if (pageIndex == BookContentView.DURPAGEINDEXEND) {
-//                            pageIndex = tempCount
-//                        } else {
-//                            if (pageIndex >= tempCount) {
-//                                pageIndex = tempCount
-//                            }
-//                        }
-//                        val start = pageIndex * pageLineCount
-//                        val end = if (pageIndex == tempCount) it.bg.length
-//                                ?: 0 else start + pageLineCount
-//                        if (bookContentView != null && qtag == bookContentView!!.getqTag()) {
-//                            bookContentView.updateData(qtag, it.jbTitle, it?.bg?.toList().map { it.toString() }.subList(start, end), it.totalZj, chapterIndex, pageIndex, tempCount + 1)
-//                        }
-//                    }
                 }
                 override fun updateProgress(chapterIndex: Int, pageIndex: Int) {
-//                    it?.let {
-//                        it.zj_index = chapterIndex
-//                        it.zj_self_index = pageIndex
-//                    }
                     viewModel.updateProgress(chapterIndex, pageIndex)
-//
 //                if (viewModel.getBookShelf()!!.getBookInfoBean().getChapterlist()!!.size > 0)
 //                    atv_title!!.setText(viewModel.getBookShelf()!!.getBookInfoBean().getChapterlist()!!.get(viewModel.getBookShelf()!!.getDurChapter()).getDurChapterName())
 //                else
@@ -111,8 +80,14 @@ class MainGameFragment : BaseFragment<GameMainModel>() {
 //                ll_menu_bottom!!.startAnimation(menuBottomIn)
                 }
             })
-            it?.let {
-                view?.tv_content?.startLoading()
+//            it?.let {
+//                view?.tv_content?.startLoading()
+//            }
+        })
+        viewModel.doZl()
+        viewModel.getState()?.observe(activity as LifecycleOwner, Observer {
+            when(it){
+                "开始"->view?.tv_content?.startLoading()
             }
         })
         return view

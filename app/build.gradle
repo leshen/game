@@ -4,20 +4,19 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "game.shenle.com"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         flavorDimensions "versionCode"
-//        compileOptions {
-//            sourceCompatibility JavaVersion.VERSION_1_8
-//            targetCompatibility JavaVersion.VERSION_1_8
-//        }
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
         multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -25,7 +24,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.3'
     dexOptions {
         preDexLibraries = false
         javaMaxHeapSize "4g"
@@ -39,35 +38,35 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
-    implementation 'cn.bmob.android:bmob-sdk:3.5.5'
+    implementation 'cn.bmob.android:bmob-sdk:3.7.3-rc1'
     //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
     implementation 'cn.bmob.android:http-legacy:1.0'
-    api "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-    kapt 'com.google.dagger:dagger-compiler:2.13'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.13'
-    api 'com.google.dagger:dagger:2.13'
-    api 'com.google.dagger:dagger-android:2.13'
-    api 'com.google.dagger:dagger-android-support:2.13'
+//    api "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    kapt 'com.google.dagger:dagger-compiler:2.23.1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.23.1'
+    api 'com.google.dagger:dagger:2.23.1'
+    api 'com.google.dagger:dagger-android:2.23.1'
+    api 'com.google.dagger:dagger-android-support:2.23.1'
     // if you use the support libraries
-    kapt 'com.google.dagger:dagger-android-processor:2.13'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.13'
-    api 'android.arch.lifecycle:runtime:1.1.0'
-    api 'android.arch.lifecycle:extensions:1.1.0'
-    kapt "android.arch.lifecycle:compiler:1.1.0"
-    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
-    api 'android.arch.persistence.room:runtime:1.0.0'
-    kapt "android.arch.persistence.room:compiler:1.0.0"
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
-    compile 'skin.support:skin-support:2.2.2'
+    kapt 'com.google.dagger:dagger-android-processor:2.23.1'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.23.1'
+    api 'android.arch.lifecycle:runtime:1.1.1'
+    api 'android.arch.lifecycle:extensions:1.1.1'
+    kapt "android.arch.lifecycle:compiler:1.1.1"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+    api 'android.arch.persistence.room:runtime:1.1.1'
+    kapt "android.arch.persistence.room:compiler:1.1.1"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    api 'skin.support:skin-support:2.2.2'
     // skin-support 基础控件支持
-    compile 'skin.support:skin-support-design:2.2.2'
+    api 'skin.support:skin-support-design:2.2.2'
     // skin-support-design material design 控件支持[可选]
-    compile 'skin.support:skin-support-cardview:2.2.2'
+    api 'skin.support:skin-support-cardview:2.2.2'
     // skin-support-cardview CardView 控件支持[可选]
-    compile 'skin.support:skin-support-constraint-layout:2.2.2'
+    api 'skin.support:skin-support-constraint-layout:2.2.2'
     // skin-support-constraint-layout ConstraintLayout 控件支持[可选]
     //        api 'com.android.support:appcompat-v7:26.0.0'
-    api 'com.github.anzaizai:EasySwipeMenuLayout:1.1.2'
+    api 'com.github.anzaizai:EasySwipeMenuLayout:1.1.4'
     //沉浸式状态栏
     api 'com.zhangmonke:ImmerseLayout:1.1.1'
     //AutofitTextView
@@ -75,10 +74,10 @@ dependencies {
     //ProgressBar
     api 'com.zhangmonke:MProgressBar:1.0.1'
     //CircleImageView
-    api 'de.hdodenhof:circleimageview:2.1.0'
+    api 'de.hdodenhof:circleimageview:3.0.0'
     //SwitchButton
-    compile 'com.kyleduo.switchbutton:library:1.4.4'
-    compile 'com.victor:lib:1.0.4'
+    api 'com.kyleduo.switchbutton:library:1.4.4'
+    api 'com.victor:lib:1.0.4'
     implementation project(':leshenlib')
     implementation files('libs/utdid4all-1.0.4.jar')
     implementation files('libs/juniversalchardet-1.0.3.jar')

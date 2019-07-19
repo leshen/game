@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.text.Layout
 import android.text.StaticLayout
 import android.util.AttributeSet
+import lib.shenle.com.utils.UIUtils.post
 
 import java.util.Timer
 import java.util.TimerTask
@@ -91,11 +92,11 @@ class PrinterTextView : SkinCompatTextView {
         mTimer!!.schedule(PrinterTimeTask(), intervalTime.toLong(), intervalTime.toLong())
     }
 
-    fun restartTimer() {
+    fun restartTimer(printProgress:Int) {
         if (mTimer != null) {
             mTimer!!.cancel();
-
         }
+        this.printProgress = printProgress
         mTimer = Timer()
         mTimer!!.schedule(PrinterTimeTask(), intervalTime.toLong(), intervalTime.toLong())
     }

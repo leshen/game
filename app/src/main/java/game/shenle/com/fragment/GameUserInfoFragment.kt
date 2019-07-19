@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import game.shenle.com.BaseFragment
 import game.shenle.com.R
-import game.shenle.com.viewmodel.GameControllerModel
 import game.shenle.com.viewmodel.GameMainModel
-import lib.shenle.com.base.SLBaseFragment
 
 /**
  * 控制器

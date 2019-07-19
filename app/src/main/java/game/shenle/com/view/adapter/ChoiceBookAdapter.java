@@ -44,13 +44,14 @@ public class ChoiceBookAdapter extends RefreshRecyclerViewAdapter {
     @Override
     public void onBindViewholder(final RecyclerView.ViewHolder holder, final int position) {
         final int realposition = position;
-        Glide.with(((Viewholder) holder).ivCover.getContext())
-                .load(searchBooks.get(realposition).getCoverUrl())
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .fitCenter()
-                .dontAnimate()
-                .placeholder(R.mipmap.img_cover_default)
-                .into(((Viewholder) holder).ivCover);
+//TODO
+//        Glide.with(((Viewholder) holder).ivCover.getContext())
+//                .load(searchBooks.get(realposition).getCoverUrl())
+//                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+//                .fitCenter()
+//                .dontAnimate()
+//                .placeholder(R.mipmap.img_cover_default)
+//                .into(((Viewholder) holder).ivCover);
         ((Viewholder) holder).tvName.setText(searchBooks.get(realposition).getName());
         ((Viewholder) holder).tvAuthor.setText(searchBooks.get(realposition).getAuthor());
         String state = searchBooks.get(position).getState();

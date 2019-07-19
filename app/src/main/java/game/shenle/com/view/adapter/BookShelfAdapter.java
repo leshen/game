@@ -117,7 +117,8 @@ public class BookShelfAdapter extends RefreshRecyclerViewAdapter {
         } else {
             holder.flContent_1.setVisibility(View.VISIBLE);
         }
-        Glide.with(holder.ivCover_1.getContext()).load(books.get(index_1).getBookInfoBean().getCoverUrl()).dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESULT).centerCrop().placeholder(R.mipmap.img_cover_default).into(holder.ivCover_1);
+        //TODO
+//        Glide.with(holder.ivCover_1.getContext()).load(books.get(index_1).getBookInfoBean().getCoverUrl()).dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESULT).centerCrop().placeholder(R.mipmap.img_cover_default).into(holder.ivCover_1);
         holder.tvName_1.setText(books.get(index_1).getBookInfoBean().getName());
 
         holder.ibContent_1.setOnClickListener(new View.OnClickListener() {
@@ -159,7 +160,8 @@ public class BookShelfAdapter extends RefreshRecyclerViewAdapter {
             } else {
                 holder.flContent_2.setVisibility(View.VISIBLE);
             }
-            Glide.with(holder.ivCover_2.getContext()).load(books.get(index_2).getBookInfoBean().getCoverUrl()).dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESULT).centerCrop().placeholder(R.mipmap.img_cover_default).into(holder.ivCover_2);
+//TODO
+//            Glide.with(holder.ivCover_2.getContext()).load(books.get(index_2).getBookInfoBean().getCoverUrl()).dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESULT).centerCrop().placeholder(R.mipmap.img_cover_default).into(holder.ivCover_2);
             holder.tvName_2.setText(books.get(index_2).getBookInfoBean().getName());
 
             holder.ibContent_2.setOnClickListener(new View.OnClickListener() {
@@ -202,7 +204,8 @@ public class BookShelfAdapter extends RefreshRecyclerViewAdapter {
                 } else {
                     holder.flContent_3.setVisibility(View.VISIBLE);
                 }
-                Glide.with(holder.ivCover_3.getContext()).load(books.get(index_3).getBookInfoBean().getCoverUrl()).dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESULT).centerCrop().placeholder(R.mipmap.img_cover_default).into(holder.ivCover_3);
+                //TODO
+//                Glide.with(holder.ivCover_3.getContext()).load(books.get(index_3).getBookInfoBean().getCoverUrl()).dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESULT).centerCrop().placeholder(R.mipmap.img_cover_default).into(holder.ivCover_3);
                 holder.tvName_3.setText(books.get(index_3).getBookInfoBean().getName());
 
                 holder.ibContent_3.setOnClickListener(new View.OnClickListener() {
@@ -251,7 +254,8 @@ public class BookShelfAdapter extends RefreshRecyclerViewAdapter {
             holder.mpbDurprogress.setProgressListener(null);
             holder.tvWatch.setText("去选书");
         } else {
-            Glide.with(holder.ivCover.getContext()).load(books.get(index).getBookInfoBean().getCoverUrl()).dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESULT).centerCrop().placeholder(R.mipmap.img_cover_default).into(holder.ivCover);
+            //TODO
+//            Glide.with(holder.ivCover.getContext()).load(books.get(index).getBookInfoBean().getCoverUrl()).dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESULT).centerCrop().placeholder(R.mipmap.img_cover_default).into(holder.ivCover);
 
             holder.flLastestTip.setVisibility(View.VISIBLE);
 
