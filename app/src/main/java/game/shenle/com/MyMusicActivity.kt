@@ -152,10 +152,15 @@ class MyMusicActivity : BaseActivity<MyMusicViewModel>(), SeekBar.OnSeekBarChang
     override fun onNextP() {
         isPlaying = false
         onStopP()
+        var tagMp3 = if (path.contains(".MP3"))".MP3" else ".mp3"
         if (tv_fa1.isChecked){
-            val page = MyUtils.getZZIdEnd(path.substring(path.indexOf(".mp3")-3), ".mp3")
+            val page = MyUtils.getZZIdEnd(path.substring(path.indexOf(tagMp3)-3), tagMp3)
             val substring = path.substring(0, path.indexOf(".mp3") - 3)
-            path = substring+path.substring(path.indexOf(".mp3")-3).replace(page!!,page+1)
+            var nextPage = (page!!.toInt()+1).toString()
+            if (page!!.toInt()<9&&page.contains("0")){
+                nextPage = "0"+(page.toInt()+1)
+            }
+            path = substring+path.substring(path.indexOf(".mp3")-3).replace(page!!,nextPage)
             et_dz.setText(path)
             onPlayP(path,0)
         }
