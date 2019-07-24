@@ -57,15 +57,10 @@ dependencies {
     api 'android.arch.persistence.room:runtime:1.1.1'
     kapt "android.arch.persistence.room:compiler:1.1.1"
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
-    api 'skin.support:skin-support:2.2.2'
-    // skin-support 基础控件支持
-    api 'skin.support:skin-support-design:2.2.2'
-    // skin-support-design material design 控件支持[可选]
-    api 'skin.support:skin-support-cardview:2.2.2'
-    // skin-support-cardview CardView 控件支持[可选]
-    api 'skin.support:skin-support-constraint-layout:2.2.2'
-    // skin-support-constraint-layout ConstraintLayout 控件支持[可选]
-    //        api 'com.android.support:appcompat-v7:26.0.0'
+    implementation 'skin.support:skin-support:3.1.1'                   // skin-support 基础控件支持
+    implementation 'skin.support:skin-support-design:3.1.1'            // skin-support-design material design 控件支持[可选]
+    implementation 'skin.support:skin-support-cardview:3.1.1'          // skin-support-cardview CardView 控件支持[可选]
+    implementation 'skin.support:skin-support-constraint-layout:3.1.1' // skin-support-constraint-layout ConstraintLayout 控件支持[可选]
     api 'com.github.anzaizai:EasySwipeMenuLayout:1.1.4'
     //沉浸式状态栏
     api 'com.zhangmonke:ImmerseLayout:1.1.1'
@@ -94,5 +89,15 @@ afterEvaluate {
         }
         dx.additionalParameters += '--multi-dex'
         dx.additionalParameters += "--main-dex-list=$projectDir/<mainDex>".toString()
+    }
+}
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '28.0.0'
+            }
+        }
     }
 }

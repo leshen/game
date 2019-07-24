@@ -1,0 +1,11 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <size
+                android:width="21dp"
+                android:height="21dp"/>
+            <solid android:color="@color/transparent"/>
+        </shape>
+    </item>
+    <item android:drawable="@mipmap/seekbar_btn"/>
+</layer-list>

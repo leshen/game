@@ -47,7 +47,7 @@ dependencies {
     //    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
     api 'com.jakewharton.rxbinding2:rxbinding:2.2.0'
-    api 'com.android.support.constraint:constraint-layout:2.0.0-beta1'
+    api 'com.android.support.constraint:constraint-layout:2.0.0-beta2'
 //    api "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     kapt 'com.google.dagger:dagger-compiler:2.23.1'
     api 'com.google.dagger:dagger:2.23.1'

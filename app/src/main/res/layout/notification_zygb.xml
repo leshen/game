@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/rl_play"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/ll_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/ll_play"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="50dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center_vertical"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp"
+                android:layout_marginLeft="10dp"
+                android:scaleType="centerCrop"/>
+            <TextView android:id="@+id/tv_name"
+                      style="@style/NomorlText"
+                      android:layout_gravity="center_vertical"
+                      android:layout_marginLeft="13dp"
+                      android:maxLines="2"
+                      android:ellipsize="end"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_play"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/li_pre"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_pre"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@mipmap/btn_pre_text_no"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/li_play"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_play"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/btn_pause_text"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/li_next"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_next"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@mipmap/btn_next_text_no"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

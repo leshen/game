@@ -309,6 +309,25 @@ public class TimeUtil {
         String second_str = second < 10 ? "0" + second + "\"": second + "\"";
         return minute_str + second_str;
     }
+
+    /**
+     * 时分秒
+     *
+     * @param time
+     * @return
+     */
+    public static String getStrSFMTime(long time) {
+        int hour = (int) ((time) / 1000 / 60/60);
+        int minute = (int) ((time-hour* 60) / 1000 / 60);
+        int second = (int) ((time- minute * 60 * 1000L) / 1000);
+        String hour_str = (hour < 10 ?"0" + hour:hour)+":";
+        if (hour==0){
+            hour_str = "";
+        }
+        String minute_str = (minute < 10 ?"0" + minute:minute)+":";
+        String second_str = second < 10 ? "0" + second: second+"";
+        return hour_str+minute_str + second_str;
+    }
     /**
      * 分秒计时
      *

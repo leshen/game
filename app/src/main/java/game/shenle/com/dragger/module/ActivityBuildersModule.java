@@ -23,8 +23,10 @@ import game.shenle.com.EditJbActivity;
 import game.shenle.com.GameActivity;
 import game.shenle.com.MainActivity;
 import game.shenle.com.MyJbListActivity;
+import game.shenle.com.MyMusicActivity;
 import game.shenle.com.NewGameBeginActivity;
 import game.shenle.com.NewUserCreateActivity;
+import game.shenle.com.OtherActivity;
 import game.shenle.com.ReadBookActivity;
 
 @Module
@@ -52,4 +54,10 @@ public abstract class ActivityBuildersModule {
 
     @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
     abstract MyJbListActivity contributeMyJbListActivity();
+
+    @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
+    abstract OtherActivity contributeOtherActivity();
+
+    @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
+    abstract MyMusicActivity contributeMyMusicActivity();
 }

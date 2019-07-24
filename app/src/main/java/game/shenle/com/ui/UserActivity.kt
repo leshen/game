@@ -47,7 +47,7 @@
 //    override fun onStart() {
 //        super.onStart()
 //        // Subscribe to the emissions of the user name from the view model.
-//        // Update the user name text view, at every onNext emission.
+//        // Update the user name text view, at every onNextP emission.
 //        // In case of error, log the exception.
 //        disposable.add(viewModel.userName()
 //                .subscribeOn(Schedulers.io())
@@ -56,8 +56,8 @@
 //                        { error -> Log.e(TAG, "Unable to get username", error) }))
 //    }
 //
-//    override fun onStop() {
-//        super.onStop()
+//    override fun onStopP() {
+//        super.onStopP()
 //
 //        // clear all the subscription
 //        disposable.clear()

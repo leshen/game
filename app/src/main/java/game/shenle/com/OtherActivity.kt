@@ -41,7 +41,7 @@ class OtherActivity:BaseActivity<OtherViewModel>() {
             val item = adapter?.data?.get(position) as String?
             when(item){
                 "mp3"->{
-
+                    MyMusicActivity.goHere()
                 }
             }
         }

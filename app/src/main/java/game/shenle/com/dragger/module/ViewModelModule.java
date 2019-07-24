@@ -16,8 +16,10 @@ import game.shenle.com.viewmodel.GameUserInfoModel;
 import game.shenle.com.viewmodel.GameViewModel;
 import game.shenle.com.viewmodel.MainViewModel;
 import game.shenle.com.viewmodel.MyJbListModel;
+import game.shenle.com.viewmodel.MyMusicViewModel;
 import game.shenle.com.viewmodel.NewGameBeginViewModel;
 import game.shenle.com.viewmodel.NewUserCreateViewModel;
+import game.shenle.com.viewmodel.OtherViewModel;
 import game.shenle.com.viewmodel.ReadBookViewModel;
 import lib.shenle.com.dagger2.SLViewModelFactory;
 import lib.shenle.com.dagger2.SLViewModelModule;
@@ -74,8 +76,18 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ReadBookViewModel.class)
     abstract ViewModel bindReadBookViewModel(ReadBookViewModel readBookViewModel);
+
     @Binds
     @IntoMap
     @ViewModelKey(MyJbListModel.class)
     abstract ViewModel bindMyJbListModel(MyJbListModel readBookViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(OtherViewModel.class)
+    abstract ViewModel bindOtherViewModel(OtherViewModel otherViewModel);
+    @Binds
+    @IntoMap
+    @ViewModelKey(MyMusicViewModel.class)
+    abstract ViewModel bindMyMusicViewModel(MyMusicViewModel viewModel);
 }

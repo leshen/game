@@ -29,7 +29,7 @@ class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
         }
     }
 
-    private val listData = arrayListOf("新建游戏","单人旅程","双人旅程","龙套体验","上帝视角旁观","关于我们","上帝视角管理","阅读")
+    private val listData = arrayListOf("新建游戏","单人旅程","双人旅程","龙套体验","上帝视角旁观","关于我们","上帝视角管理","阅读","扩展")
     override fun initView() {
         setContentView(R.layout.activity_new_game_begin)
         viewModel.init("w9rxDDDi")
