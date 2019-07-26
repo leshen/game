@@ -16,6 +16,7 @@
 
 package game.shenle.com
 
+import com.raizlabs.android.dbflow.config.FlowManager
 import game.shenle.com.dragger.DaggerAppComponent
 import game.shenle.com.dragger.module.AppModule
 import lib.shenle.com.base.SLBaseApplication
@@ -34,6 +35,7 @@ class MyApplication : SLBaseApplication() {
     override fun onCreate() {
         super.onCreate()
         SkinChangeInit()
+        FlowManager.init(this)
     }
 
     /**

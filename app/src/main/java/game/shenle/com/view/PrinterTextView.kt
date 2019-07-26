@@ -62,7 +62,7 @@ class PrinterTextView : SkinCompatTextView {
      */
     @JvmOverloads
     fun setPrintText(str: String, time: Int = DEFAULT_TIME_DELAY, intervalChar: String = DEFAULT_INTERVAL_CHAR) {
-        if (strIsEmpty(str) || 0 == time || strIsEmpty(intervalChar)) {
+        if (strIsEmpty(str) || 0 == time) {
             return
         }
         this.mPrintStr = str

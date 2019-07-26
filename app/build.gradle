@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-
+def dbflow_version = "4.1.2"
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -37,6 +37,20 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
+
+    // Use if Kotlin user.
+    kapt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
+
+    // 隔开
+    implementation "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
+
+    // 隔开
+    implementation "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
+
+    // 隔开
+    implementation "com.github.Raizlabs.DBFlow:dbflow-kotlinextensions:${dbflow_version}"
     //Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
     implementation 'cn.bmob.android:bmob-sdk:3.7.3-rc1'
     //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)

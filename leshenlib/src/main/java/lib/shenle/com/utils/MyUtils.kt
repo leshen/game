@@ -300,16 +300,20 @@ class MyUtils {
          * @param regex_front id前的字符串
          * @return 所有满足正则表达式的字符串
          */
-        fun getZZId(str: String?, regex_front: String): String? {
+        fun getZZId(str: String?, regex_front1: String): String? {
             if (str == null || str.isEmpty()) {
                 return null
             }
-            val regex = "$regex_front(?:\\d+)"
+            var regex_front = Pattern.quote(regex_front1)
+//            val regex = "$regex_front\\d+"
+
+            val regex = "(?<=$regex_front)\\d+"
             val pattern = Pattern.compile(regex)
             val matcher = pattern.matcher(str)
             var id: String? = null
             if (matcher.find()) {
-                id = matcher.group().replace(regex_front, "")
+//                id = matcher.group().replace(regex_front, "")
+                id = matcher.group()
             }
             return id
         }
@@ -319,11 +323,12 @@ class MyUtils {
          * @param regex_front id后的字符串
          * @return 所有满足正则表达式的字符串
          */
-        fun getZZIdEnd(str: String?, regex_front: String): String? {
+        fun getZZIdEnd(str: String?, regex_front1: String): String? {
             if (str == null || str.isEmpty()) {
                 return null
             }
-            val regex = "(?:\\d+)$regex_front"
+            var regex_front = Pattern.quote(regex_front1)
+            val regex = "\\d+$regex_front"
             val pattern = Pattern.compile(regex)
             val matcher = pattern.matcher(str)
             var id: String? = null

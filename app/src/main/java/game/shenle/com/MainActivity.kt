@@ -25,7 +25,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
         val typeface = Typeface.createFromAsset(assets, "fonnts/标准楷体简.ttf")
 //        val typeface = Typeface.createFromAsset(assets, "fonnts/标准隶书体简.TTF")
         tv_content.setTypeface(typeface)
-        tv_content.setPrintText("江湖",1000,"　")
+        tv_content.setPrintText("江湖",1000,"")
         tv_content.startPrint(object : OnPrintListener {
             override fun start(mPrintStr: String) {
             }

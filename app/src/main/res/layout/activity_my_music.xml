@@ -13,7 +13,7 @@
         <TextView
             android:id="@+id/tv_title_mp3"
             android:layout_width="match_parent"
-            android:layout_height="100dp"/>
+            android:layout_height="40dp"/>
         <TextView
             android:id="@+id/tv_money_ts"
             style="@style/NomorlText"
@@ -134,12 +134,24 @@
             android:layout_weight="0"
             android:text="00:00"/>
     </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rl_edit"
+        android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_play">
+    <Button
+        android:id="@+id/bt_submit"
+        style="@style/NomorlText28White"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/gradient_green_button"
+        android:text="GO!"/>
     <android.support.design.widget.TextInputLayout
         android:id="@+id/tl_dz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_play"
-        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/bt_submit"
         android:hint="地址"
         app:counterEnabled="true"
         app:counterMaxLength="200"
@@ -151,26 +163,73 @@
             android:layout_height="wrap_content"
             android:imeOptions="actionNext"
             android:textColor="@color/text_color_1"
-            android:textSize="@dimen/text_size_36"/>
+            android:paddingRight="5dp"
+            android:textSize="@dimen/text_size_28"/>
     </android.support.design.widget.TextInputLayout>
-    <Button
-        android:id="@+id/bt_submit"
-        style="@style/NomorlText28White"
-        android:layout_below="@+id/tl_dz"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/gradient_green_button"
-        android:text="GO!"/>
+
+    <ImageView
+        android:id="@+id/ib_cancel"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="5dip"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/bt_submit"
+        android:background="@color/transparent"
+        android:padding="5dip"
+        android:src="@mipmap/cancel_new"
+        android:visibility="gone"/>
+    </RelativeLayout>
     <CheckBox
         android:id="@+id/cb_auto"
         style="@style/NomorlText28"
+        android:layout_below="@+id/rl_edit"
+        android:layout_marginTop="10dp"
         android:padding="10dp"
-        android:layout_alignBaseline="@+id/bt_submit"
         android:text="自动续播"/>
+    <TextView
+        android:id="@+id/tv_tiao_time_less"
+        style="@style/NomorlText28"
+        android:layout_alignBaseline="@+id/cb_auto"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/gradient_green_button"
+        android:padding="10dp"
+        android:text="-1"/>
+
+    <TextView
+        android:id="@+id/tv_tiao_time_add"
+        style="@style/NomorlText28"
+        android:layout_alignBaseline="@+id/cb_auto"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/tv_tiao_time_less"
+        android:background="@drawable/gradient_green_button"
+        android:padding="10dp"
+        android:text="+1"/>
+    <CheckBox
+        android:id="@+id/cb_tiao"
+        style="@style/NomorlText28"
+        android:layout_alignBaseline="@+id/cb_auto"
+        android:layout_toLeftOf="@+id/tv_tiao_time"
+        android:paddingLeft="10dp"
+        android:text="跳过片头"/>
+    <TextView
+        android:id="@+id/tv_tiao_time"
+        style="@style/NomorlText28"
+        android:layout_alignBaseline="@+id/cb_auto"
+        android:layout_toLeftOf="@+id/tv_tiao_time_add"
+        android:paddingRight="10dp"
+        android:text="3"/>
     <CheckBox
         android:id="@+id/tv_fa1"
         style="@style/NomorlText28"
-        android:padding="10dp"
         android:layout_below="@+id/cb_auto"
-        android:text="方案1(mp3前面数字更改)"/>
+        android:padding="10dp"
+        android:text="方案1(mp3前面数字更改,个位带0)"/>
+    <CheckBox
+        android:id="@+id/tv_fa2"
+        style="@style/NomorlText28"
+        android:layout_alignBaseline="@+id/tv_fa1"
+        android:layout_toRightOf="@+id/tv_fa1"
+        android:padding="10dp"
+        android:text="不带0"/>
 </RelativeLayout>
