@@ -19,8 +19,10 @@ package game.shenle.com.dragger.module;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import game.shenle.com.fragment.ControllerFragment;
+import game.shenle.com.fragment.EditHelpFragment;
 import game.shenle.com.fragment.GameUserInfoFragment;
 import game.shenle.com.fragment.MainGameFragment;
+import game.shenle.com.fragment.ZhiLingFragment;
 
 @Module
 public abstract class FragmentBuildersModule {
@@ -30,4 +32,8 @@ public abstract class FragmentBuildersModule {
     abstract GameUserInfoFragment contributeGameUserInfoFragment();
     @ContributesAndroidInjector
     abstract MainGameFragment contributeMainGameFragment();
+    @ContributesAndroidInjector
+    abstract EditHelpFragment contributeEditHelpFragment();
+    @ContributesAndroidInjector
+    abstract ZhiLingFragment contributeZhiLingFragment();
 }

@@ -83,7 +83,7 @@ class NewUserCreateActivity : BaseActivity<NewUserCreateViewModel>() {
                     }
                     v.tv_sign.text = "作者:${item.userName ?: "佚名"},最近更新:${item.updatedAt}"
                     v.tv.setTextColor(UIUtils.getColor(R.color.text_color_1))
-                    if (item.userName==""){//TODO 编辑权限判断
+                    if (item.userId==""){//TODO 编辑权限判断
                         v.em.isCanRightSwipe = true
                         v.tv_edit.setOnClickListener{
                             //编辑

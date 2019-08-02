@@ -23,6 +23,7 @@ import lib.shenle.com.utils.UIUtils
 import android.app.NotificationChannel
 import android.graphics.Color
 import android.os.Build
+import lib.shenle.com.utils.LogUtils
 
 
 class MusicService : Service(), MediaPlayer.OnCompletionListener {
@@ -212,20 +213,23 @@ class MusicService : Service(), MediaPlayer.OnCompletionListener {
                 //                }
                 mMediaPlayer!!.stop()
                 mMediaPlayer!!.seekTo(position)
-                mMediaPlayer!!.reset()//把各项参数恢复到初始状态
-                mMediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
-                this.path = path
-                mMediaPlayer!!.setDataSource(path)
-                mMediaPlayer!!.prepareAsync()//进行缓冲
-                mMediaPlayer!!.setOnPreparedListener(PreparedListener(position))//注册一个监听器
-                mMediaPlayer!!.setOnSeekCompleteListener { mp ->
-                    if (mp != null && mp.currentPosition == mp.duration) {
-                        if (UIUtils.getActivity() is PlayUpdateProgressListener) {
-                            if ((UIUtils.getActivity() as PlayUpdateProgressListener).getPlayStyle() == MUSIC_AUTO_NEXT)
-                                (UIUtils.getActivity() as PlayUpdateProgressListener).onNextP()
+                Thread({
+                    //                mMediaPlayer!!.reset()//把各项参数恢复到初始状态
+                    mMediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
+                    this.path = path
+                    mMediaPlayer!!.setDataSource(path)
+                    mMediaPlayer!!.prepareAsync()//进行缓冲
+                    mMediaPlayer!!.setOnPreparedListener(PreparedListener(position))//注册一个监听器
+                    mMediaPlayer!!.setOnSeekCompleteListener { mp ->
+                        LogUtils.d("OnSeekCompleteListener=0"+(mp.currentPosition == mp.duration).toString())
+                        if (mp != null && mp.currentPosition == mp.duration) {
+                            if (UIUtils.getActivity() is PlayUpdateProgressListener) {
+                                if ((UIUtils.getActivity() as PlayUpdateProgressListener).getPlayStyle() == MUSIC_AUTO_NEXT)
+                                    (UIUtils.getActivity() as PlayUpdateProgressListener).onNextP()
+                            }
                         }
                     }
-                }
+                }).start()
 
             }
         } catch (e: Exception) {

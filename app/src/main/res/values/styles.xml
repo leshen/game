@@ -6,6 +6,15 @@
     <style name="AppTheme.WelcomePage" parent="AppTheme.my">
         <item name="android:windowBackground">@drawable/bg_green</item>
     </style>
+    <style name="BkjhAppTheme"
+           parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowActionBar">false</item>
+        <!--<item name="android:windowAnimationStyle">@style/Animation</item>-->
+    </style>
     <style name="textStyle24Nomorl">
         <item name="android:textSize">@dimen/text_size_24</item>
         <item name="android:textColor">@color/text_color_1</item>

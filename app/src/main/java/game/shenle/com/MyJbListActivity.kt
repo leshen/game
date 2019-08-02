@@ -8,6 +8,7 @@ import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.example.android.observability.persistence.JbTable
+import game.shenle.com.NewGameBeginActivity.Companion.uid_self
 import game.shenle.com.db.repository.Resource
 import game.shenle.com.db.repository.Status
 import game.shenle.com.utils.BombHelper
@@ -58,13 +59,13 @@ class MyJbListActivity : BaseActivity<MyJbListModel>() {
                     v.em.isCanLeftSwipe = false
                     v.em.isCanRightSwipe = false
                     v.tv.setTextColor(UIUtils.getColor(R.color.text_color_2))
-                    v.rl_content.setOnClickListener{ CreateJbActivity.goHere()}
+                    v.rl_content.setOnClickListener { CreateJbActivity.goHere() }
                 } else {
                     v.tv_sign.visibility = View.VISIBLE
                     v.tv.gravity = Gravity.LEFT
                     v.em.isCanLeftSwipe = true
                     v.em.isCanRightSwipe = true
-                    var stateStr= if (item?.jbStatus == 0) {
+                    var stateStr = if (item?.jbStatus == 0) {
                         "(审核中)"
                     } else if (item?.jbStatus == 1) {
                         "(更新中)"
@@ -82,25 +83,25 @@ class MyJbListActivity : BaseActivity<MyJbListModel>() {
                     }
                     v.tv_sign.text = "作者:${item.userName ?: "佚名"},最近更新:${item.updatedAt}"
                     v.tv.setTextColor(UIUtils.getColor(R.color.text_color_1))
-                    if (item.userId=="w9rxDDDi"){//TODO 编辑权限判断
+                    if (item.userId == uid_self) {//TODO 编辑权限判断
                         v.em.isCanRightSwipe = true
-                        v.tv_edit.setOnClickListener{
+                        v.tv_edit.setOnClickListener {
                             //编辑
                             EditJbActivity.goHere(item.userId)
                         }
-                    }else{
+                    } else {
                         v.em.isCanRightSwipe = false
                     }
                     v.em.isCanLeftSwipe = true
-                    v.tv_del.setOnClickListener{
-                        //TODO 删除
-                            UIUtils.showToastSafe("删除")
-                         }
-                    v.tv_share.setOnClickListener{
+                    v.tv_del.setOnClickListener {
+                        //TODO 更新
+                        CreateJbZjActivity.goHere()
+                    }
+                    v.tv_share.setOnClickListener {
                         //TODO 分享
                         UIUtils.showToastSafe("分享")
                     }
-                    v.rl_content.setOnClickListener{ GameActivity.goHere(item?.objectId!!)}
+                    v.rl_content.setOnClickListener { GameActivity.goHere(item?.objectId!!) }
                 }
             }
         })
@@ -116,7 +117,7 @@ class MyJbListActivity : BaseActivity<MyJbListModel>() {
             }
         }
         baseAdapter?.setOnLoadMoreListener({
-            BombHelper.setOnLoadMoreListener(viewModel.loadNextJBList(),this,baseAdapter)
+            BombHelper.setOnLoadMoreListener(viewModel.loadNextJBList(), this, baseAdapter)
         }, rv)
     }
 }

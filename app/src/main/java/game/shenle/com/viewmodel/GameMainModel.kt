@@ -12,6 +12,7 @@ import game.shenle.com.view.OnPrintListener
 import game.shenle.com.view.contentswitchview.BookContentView
 import java.util.regex.Pattern
 import android.arch.lifecycle.MutableLiveData
+import game.shenle.com.NewGameBeginActivity.Companion.uid_self
 import lib.shenle.com.utils.UIUtils
 import java.util.*
 
@@ -49,7 +50,7 @@ class GameMainModel : BaseViewModel {
                     jbContentList = it?.data
                     var str_copy = jbContentList!![0].bg
                     val jbContentTable = jbContentList!![0]
-                    zjContent = Transformations.map(gameUserRepository.getGameUserContent("w9rxDDDi", jbId), {
+                    zjContent = Transformations.map(gameUserRepository.getGameUserContent(uid_self, jbId), {
                         if (it.status == Status.SUCCESS) {
                             str_copy = str_copy.replace("[*初始化数据*]", it.data.toString()).replace("[*用户名*]", it.data?.gameUserName!!)
                             if (zl_list.containsKey(current_zl_process))

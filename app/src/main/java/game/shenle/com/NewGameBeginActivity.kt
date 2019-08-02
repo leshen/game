@@ -24,6 +24,7 @@ class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
         return NewGameBeginViewModel::class.java
     }
     companion object {
+        var uid_self = "w9rxDDDi"
         fun goHere() {
             UIUtils.startActivity(NewGameBeginActivity::class.java)
         }
@@ -32,7 +33,7 @@ class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
     private val listData = arrayListOf("新建游戏","单人旅程","双人旅程","龙套体验","上帝视角旁观","关于我们","上帝视角管理","阅读","扩展")
     override fun initView() {
         setContentView(R.layout.activity_new_game_begin)
-        viewModel.init("w9rxDDDi")
+        viewModel.init(uid_self)
         initRecyleView(listData)
         checkProgress()
     }
@@ -80,8 +81,8 @@ class NewGameBeginActivity : BaseActivity<NewGameBeginViewModel>() {
         viewModel.getUser()?.observe(this, Observer<Resource<UserTable>> {
             if (it?.status == Status.SUCCESS) {
                 this.user = it
-                val userName = it?.data?.username
-                if (userName.isNullOrEmpty()) {
+                val jbId = it?.data?.jbId
+                if (jbId.isNullOrEmpty()) {
                     //新游戏
                     if (listData.contains("继续游戏")) {
                         listData.remove("继续游戏")

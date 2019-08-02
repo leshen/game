@@ -3,6 +3,7 @@ package game.shenle.com.viewmodel
 import android.arch.lifecycle.LiveData
 import com.example.android.observability.persistence.JbHttp
 import com.example.android.observability.persistence.JbTable
+import game.shenle.com.NewGameBeginActivity.Companion.uid_self
 import game.shenle.com.db.repository.JbRepository
 import game.shenle.com.db.repository.Resource
 import game.shenle.com.db.repository.UserRepository
@@ -25,7 +26,7 @@ class MyJbListModel : BaseViewModel {
         if (this.jbList != null) {
             return
         }
-        jbList = jbRepo.getJbList(page,"w9rxDDDi",-1)//TODO 以后加注册登录
+        jbList = jbRepo.getJbList(page,uid_self,-1)//TODO 以后加注册登录
     }
     fun getJBList(): LiveData<Resource<List<JbTable>>>? {
         return jbList

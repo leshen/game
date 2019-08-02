@@ -9,6 +9,7 @@ import com.example.android.observability.persistence.JbContentDao
 import com.example.android.observability.persistence.JbContentHttp
 import com.example.android.observability.persistence.JbContentTable
 import game.shenle.com.dragger.AppExecutors
+import lib.shenle.com.utils.TimeUtil
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -81,10 +82,37 @@ class JbContentRepository {
                 jbContentDao.updateJbContent(jbContentTable)
             }}
     }
-    fun saveHttpTable(jbContentHttp:JbContentHttp) {
-        jbContentHttp.save(object : SaveListener<String>() {
-            override fun done(objectId: String?, e: BmobException?) {
+    fun saveHttpTable(jbContentHttp:JbContentHttp):LiveData<Resource<JbContentTable>> {
+        return object : NetworkBoundResource<JbContentTable>(executor) {
+            override fun saveTable() {
+                jbContentDao.insertJb(JbContentTable())
             }
-        })
+            override fun fetchFromNetwork(dbSource: LiveData<JbContentTable>) {
+                jbContentHttp.save(object : SaveListener<String>() {
+                    override fun done(objectId: String?, e: BmobException?) {
+                        if (e == null) {
+                            jbContentHttp.objectId = objectId
+                            val toTable = jbContentHttp.toTable()
+                            toTable.updatedAt = TimeUtil.getChinaDateTime(System.currentTimeMillis())!!
+                            onFetchSuccess(toTable, dbSource!!)
+                        } else {
+                            onFetchFailed(e, dbSource)
+                        }
+                    }
+                })
+            }
+
+            override fun saveCallResult(item: JbContentTable) {
+                jbContentDao.insertJb(item)
+            }
+
+            override fun shouldFetch(data: JbContentTable?): Boolean {
+                return true
+            }
+
+            override fun loadFromDb(): LiveData<JbContentTable> {
+                return jbContentDao.getJbById(jbContentHttp.objectId?:"-1")
+            }
+        }.asLiveData()
     }
 }

@@ -201,6 +201,8 @@ class MyMusicActivity : BaseActivity<MyMusicViewModel>(), SeekBar.OnSeekBarChang
      * 下一篇
      */
     override fun onNextP() {
+        if(path.isNullOrEmpty())
+            path = et_dz.text.toString()
         isPlaying = false
         onStopP()
         var tagMp3 = if (path.contains(".MP3")) ".MP3" else ".mp3"
@@ -226,6 +228,8 @@ class MyMusicActivity : BaseActivity<MyMusicViewModel>(), SeekBar.OnSeekBarChang
      * 上一篇
      */
     override fun onPreP() {
+        if(path.isNullOrEmpty())
+            path = et_dz.text.toString()
         isPlaying = false
         onStopP()
         var tagMp3 = if (path.contains(".MP3")) ".MP3" else ".mp3"
@@ -327,7 +331,7 @@ class MyMusicActivity : BaseActivity<MyMusicViewModel>(), SeekBar.OnSeekBarChang
 //            bundle.putString("aid", aid)
             musicService = (service as MusicService.MyBinder).getService(bundle)
             remoteViews = (service as MusicService.MyBinder).getRemoteViews()
-            remoteViews!!.setTextViewText(R.id.tv_name, title)
+            remoteViews!!.setTextViewText(R.id.tv_name, "测试")
             remoteViews!!.setImageViewResource(R.id.iv_icon, R.mipmap.ic_launcher)
             musicService!!.updataView()
             musicService!!.setPlayUpdateOnProgressBarListener(this@MyMusicActivity)

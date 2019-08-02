@@ -64,6 +64,6 @@
             android:layout_height="match_parent"
             android:background="@android:color/holo_orange_dark"
             style="@style/NomorlText24"
-            android:text="删除"/>
+            android:text="更新"/>
     </LinearLayout>
 </com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout>

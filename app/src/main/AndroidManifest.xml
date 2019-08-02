@@ -64,12 +64,26 @@
         <activity android:name=".NewGameBeginActivity"/>
         <activity android:name=".GameActivity"/>
         <activity android:name=".NewUserCreateActivity"/>
-        <activity android:name=".CreateJbActivity"/>
+        <activity android:name=".CreateJbActivity"
+                  android:launchMode="singleTop"
+                  android:screenOrientation="portrait"
+                  android:configChanges="keyboardHidden|orientation|screenSize"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".CreateJbZjActivity"
+                  android:launchMode="singleTop"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/BkjhAppTheme"
+                  android:configChanges="keyboardHidden|orientation|screenSize"
+                  android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".EditJbActivity"/>
         <activity android:name=".ReadBookActivity"/>
         <activity android:name=".MyJbListActivity"/>
         <activity android:name=".OtherActivity"/>
-        <activity android:name=".MyMusicActivity"/>
+        <activity android:name=".MyMusicActivity"
+                  android:launchMode="singleTop"
+                  android:screenOrientation="portrait"
+                  android:configChanges="keyboardHidden|orientation|screenSize"
+                  android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

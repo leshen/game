@@ -333,7 +333,7 @@ class MyUtils {
             val matcher = pattern.matcher(str)
             var id: String? = null
             if (matcher.find()) {
-                id = matcher.group().replace(regex_front, "")
+                id = matcher.group().replace(regex_front1, "")
             }
             return id
         }
